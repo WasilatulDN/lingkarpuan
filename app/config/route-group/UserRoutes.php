@@ -15,14 +15,14 @@ class UserRoutes extends RouterGroup
         $this->addGet(
             '/register',
             [
-                'action' => 'create',
+                'action' => 'register',
             ]
         );
 
         $this->addPost(
             '/register',
             [
-                'action' => 'store',
+                'action' => 'postregister',
             ]
         );
 

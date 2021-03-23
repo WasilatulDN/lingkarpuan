@@ -34,7 +34,7 @@
 		    </ul>
 		    {% if(session.get('user')) %}
 		    	<ul class="nav navbar-nav navbar-right">
-			      <li><a href="{{ url('user/logout') }}"><span class="glyphicon glyphicon-log-in"></span> Keluar</a></li>
+			      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Keluar</a></li>
 			    </ul>
 		    {% else %}
 			    <ul class="nav navbar-nav navbar-right">
@@ -44,8 +44,22 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Selamat datang di Lingkar Puan</h2>
-	  
+	  <h2>Buat akun baru</h2>
+	  <form action="{{ url("user/register") }}" method="post">
+	    <div class="form-group">
+	      <label for="email">Email:</label>
+	      <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" name="email">
+	    </div>
+	    <div class="form-group">
+	      <label for="nama">Nama:</label>
+	      <input type="text" class="form-control" id="nama" placeholder="Masukkan nama anda" name="nama">
+	    </div>
+	    <div class="form-group">
+	      <label for="password">Password:</label>
+	      <input type="password" class="form-control" id="password" placeholder="Masukkan password anda" name="password">
+	    </div>
+	    <button type="submit" class="btn btn-default">Buat Akun</button>
+	  </form>
 	</div>
 </body>
 </html>

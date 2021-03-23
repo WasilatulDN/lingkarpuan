@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>Login</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<nav class="navbar navbar-default" style="background-color: #aacdbe">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -44,8 +44,18 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Selamat datang di Lingkar Puan</h2>
-	  
+	  <h2>Masuk</h2>
+	  <form action="{{ url("user/login") }}" method="post">
+	    <div class="form-group">
+	      <label for="email">Email:</label>
+	      <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" name="email">
+	    </div>
+	    <div class="form-group">
+	      <label for="password">Password:</label>
+	      <input type="password" class="form-control" id="password" placeholder="Masukkan password anda" name="password">
+	    </div>
+	    <button type="submit" class="btn btn-default">Masuk</button>
+	  </form>
 	</div>
 </body>
 </html>

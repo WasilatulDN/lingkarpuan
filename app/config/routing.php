@@ -5,9 +5,9 @@ $di->set(
     function () {
         $router = new \Phalcon\Mvc\Router(false);
 
-        // $router->mount(
-        //     new UserRoutes()
-        // );
+        $router->mount(
+            new UserRoutes()
+        );
 
         // $router->mount(
         //     new ArtikelRoutes()
