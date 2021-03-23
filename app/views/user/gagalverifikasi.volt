@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Register</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -11,7 +11,7 @@
 		<nav class="navbar navbar-default" style="background-color: #aacdbe">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">Lingkar Puan</a>
+		      <a class="navbar-brand" href="#">Gagal Verifikasi</a>
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li class="dropdown">
@@ -34,7 +34,7 @@
 		    </ul>
 		    {% if(session.get('user')) %}
 		    	<ul class="nav navbar-nav navbar-right">
-			      <li><a href="{{ url('user/logout') }}"><span class="glyphicon glyphicon-log-in"></span> Keluar</a></li>
+			      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Keluar</a></li>
 			    </ul>
 		    {% else %}
 			    <ul class="nav navbar-nav navbar-right">
@@ -44,18 +44,7 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Masuk</h2>
-	  <form action="{{ url("user/login") }}" method="post">
-	    <div class="form-group">
-	      <label for="email">Email:</label>
-	      <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" name="email">
-	    </div>
-	    <div class="form-group">
-	      <label for="password">Password:</label>
-	      <input type="password" class="form-control" id="password" placeholder="Masukkan password anda" name="password">
-	    </div>
-	    <button type="submit" class="btn btn-default">Masuk</button>
-	  </form>
+	  <h2>Verifikasi gagal. Silakan coba lagi.</h2>
 	</div>
 </body>
 </html>

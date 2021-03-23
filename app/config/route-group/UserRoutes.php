@@ -46,6 +46,20 @@ class UserRoutes extends RouterGroup
                 'action' => 'logout',
             ]
         );
+
+        $this->addGet(
+            '/verifikasi',
+            [
+                'action' => 'verifikasi',
+            ]
+        );
+
+        $this->addGet(
+            '/gagalverifikasi',
+            [
+                'action' => 'gagalverifikasi',
+            ]
+        );
         
     }
 }
