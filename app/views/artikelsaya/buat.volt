@@ -5,13 +5,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/a9f7xblsuyi8v09v1a8lmet0us0guiplrzldj2xd6j1aff9l/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+    selector: 'textarea#isi',
+    menubar: false
+  });
+</script>
+
 </head>
 <body>
 	<div class="container-fluid">
 		<nav class="navbar navbar-default" style="background-color: #aacdbe">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">Lingkar Puan</a>
+		      <a class="navbar-brand" href="#">Kirim Artikel</a>
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li class="dropdown">
@@ -44,8 +53,18 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Selamat datang di Lingkar Puan</h2>
-	  
+	  <h2>Kirim Artikel Anda</h2>
+	  <form action="{{ url("artikelsaya/buat") }}" method="post">
+	    <div class="form-group">
+	      <label for="judul">Judul Artikel:</label>
+	      <input type="text" class="form-control" id="judul" placeholder="Masukkan judul artikel anda" name="judul">
+	    </div>
+	    <div class="form-group">
+	      <label for="isi">Isi Artikel:</label>
+	      <textarea id="isi" name="isi" class="form-control"></textarea>
+	    </div>
+	    <button type="submit" class="btn btn-default">Kirim Artikel</button>
+	  </form>
 	</div>
 </body>
 </html>

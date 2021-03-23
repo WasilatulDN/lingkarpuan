@@ -10,7 +10,21 @@ class ArtikelSayaRoutes extends RouterGroup
             'controller' => 'artikelSaya',
         ]);
 
-        $this->setPrefix('/artikel_saya');
+        $this->setPrefix('/artikelsaya');
+
+        $this->addGet(
+            '/buat',
+            [
+                'action' => 'buat',
+            ]
+        );
+
+        $this->addPost(
+            '/buat',
+            [
+                'action' => 'postbuat',
+            ]
+        );
 
         
     }

@@ -17,9 +17,9 @@ $di->set(
         //     new ProfilRoutes()
         // );
 
-        // $router->mount(
-        //     new ArtikelSayaRoutes()
-        // );
+        $router->mount(
+            new ArtikelSayaRoutes()
+        );
 
         // $router->mount(
         //     new VerifikasiRoutes()
