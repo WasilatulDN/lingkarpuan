@@ -44,7 +44,35 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Selamat datang di Lingkar Puan</h2>
+	  <h2>Artikel di Lingkar Puan</h2>
+	  <div class="panel-group">
+	  	{% for artikel in artikels %}
+	  		<div class="col-md-6">
+		  		<div class="panel panel-default" style="margin: 10px">
+			      <div class="panel-heading">{{artikel.judul}}</div>
+			      <div class="panel-body"><a href="detail/{{artikel.id_artikel}}" class="btn btn-primary">Baca Artikel</a></div>
+			    </div>
+		  	</div>
+	  	{% endfor %}
+	  	<!-- <div class="col-md-6">
+	  		<div class="panel panel-default" style="margin: 10px">
+		      <div class="panel-heading">Panel with panel-default class</div>
+		      <div class="panel-body">Panel Content</div>
+		    </div>
+	  	</div>
+	  	<div class="col-md-6">
+	  		<div class="panel panel-default" style="margin: 10px">
+		      <div class="panel-heading">Panel with panel-default class</div>
+		      <div class="panel-body">Panel Content</div>
+		    </div>
+	  	</div>
+	  	<div class="col-md-6">
+	  		<div class="panel panel-default" style="margin: 10px">
+		      <div class="panel-heading">Panel with panel-default class</div>
+		      <div class="panel-body">Panel Content</div>
+		    </div>
+	  	</div> -->
+	  </div>
 	  
 	</div>
 </body>

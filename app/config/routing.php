@@ -9,9 +9,9 @@ $di->set(
             new UserRoutes()
         );
 
-        // $router->mount(
-        //     new ArtikelRoutes()
-        // );
+        $router->mount(
+            new ArtikelRoutes()
+        );
 
         // $router->mount(
         //     new ProfilRoutes()

@@ -18,8 +18,8 @@
 		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Artikel
 		        <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="#">Baca Artikel</a></li>
-		          <li><a href="#">Kirim Artikel</a></li>
+		          <li><a href="{{ url('artikel/') }}">Baca Artikel</a></li>
+		          <li><a href="{{ url('artikelsaya/buat') }}">Kirim Artikel</a></li>
 		          <li><a href="#">Artikel Saya</a></li>
 		        </ul>
 		      </li>

@@ -12,6 +12,33 @@ class ArtikelRoutes extends RouterGroup
 
         $this->setPrefix('/artikel');
 
+        $this->addGet(
+            '/',
+            [
+                'action' => 'artikel',
+            ]
+        );
+
+        $this->addGet(
+            '/detail/{id}',
+            [
+                'action' => 'detail',
+            ]
+        );
+
+        $this->addPost(
+            '/komentar',
+            [
+                'action' => 'postkomentar',
+            ]
+        );
+
+        $this->addGet(
+            '/hapuskomentar/{id}',
+            [
+                'action' => 'hapuskomentar',
+            ]
+        );
         
     }
 }
