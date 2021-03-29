@@ -44,28 +44,14 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>{{artikel.judul}}</h2>
-	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
-	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
-	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
-	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
-	  </form>
+	  <h2>Profil {{user.nama}}</h2>
+	  <p>Artikel yang ditulis:</p>
+	  <ul>
+		  {% for artikel in artikels %}
+		  	<li>{{artikel.judul}}</li>
+		  {% endfor %}
+	  </ul>
+	  
 	</div>
 </body>
 </html>

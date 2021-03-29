@@ -13,17 +13,17 @@ $di->set(
             new ArtikelRoutes()
         );
 
-        // $router->mount(
-        //     new ProfilRoutes()
-        // );
+        $router->mount(
+            new ProfilRoutes()
+        );
 
         $router->mount(
             new ArtikelSayaRoutes()
         );
 
-        // $router->mount(
-        //     new VerifikasiRoutes()
-        // );
+        $router->mount(
+            new VerifikasiRoutes()
+        );
 
         // $router->mount(
         //     new KonsultasiRoutes()

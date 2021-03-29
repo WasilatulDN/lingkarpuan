@@ -12,6 +12,11 @@ class VerifikasiRoutes extends RouterGroup
 
         $this->setPrefix('/verifikasi');
 
-        
+        $this->addGet(
+            '/hapus/{id}',
+            [
+                'action' => 'hapus',
+            ]
+        );
     }
 }

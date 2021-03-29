@@ -50,7 +50,10 @@
 	  		<div class="col-md-6">
 		  		<div class="panel panel-default" style="margin: 10px">
 			      <div class="panel-heading">{{artikel.judul}}</div>
-			      <div class="panel-body"><a href="detail/{{artikel.id_artikel}}" class="btn btn-primary">Baca Artikel</a></div>
+			      <div class="panel-body">
+			      	<a href="detail/{{artikel.id_artikel}}" class="btn btn-primary">Baca Artikel</a>
+			      	<a href="../verifikasi/hapus/{{artikel.id_artikel}}" class="btn btn-danger">Hapus Artikel</a>
+			      </div>
 			    </div>
 		  	</div>
 	  	{% endfor %}

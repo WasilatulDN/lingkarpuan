@@ -12,6 +12,11 @@ class ProfilRoutes extends RouterGroup
 
         $this->setPrefix('/profil');
 
-        
+        $this->addGet(
+            '/{id}',
+            [
+                'action' => 'profil',
+            ]
+        );
     }
 }
