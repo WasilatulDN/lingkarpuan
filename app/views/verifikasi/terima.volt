@@ -5,6 +5,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/a9f7xblsuyi8v09v1a8lmet0us0guiplrzldj2xd6j1aff9l/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+    selector: 'textarea#isi',
+    menubar: false
+  });
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -44,28 +52,25 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>{{artikel.judul}}</h2>
-	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
-	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
-	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
+		Status: {{status.nama_status}} <br>
+	  Catatan: <br>
+	  - Catatan penilik: {{artikel.catatan_penilik}} <br>
+	  - Catatan penulis: {{artikel.catatan_penulis}} <br><br>
+	  <form action="{{ url("verifikasi/terima") }}" method="post" enctype="multipart/form-data">
 	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
+	    <div class="form-group">
+	      <label for="judul">Judul Artikel:</label>
+	      <input type="text" class="form-control" id="judul" value={{artikel.judul}} name="judul">
 	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
+	    <div class="form-group">
+	      <label for="isi">Isi Artikel:</label>
+	      <textarea id="isi" name="isi" class="form-control">{{artikel.isi_artikel}}</textarea>
+	    </div>
+	    <div class="form-group">
+	      <label for="gambar">Gambar Ilustrasi:</label>
+	      <input type="file" class="form-control" id="gambar" name="gambar" class="form-control" accept="image/jpg, image/jpeg, image/png">
+	    </div>
+	    <button type="submit" class="btn btn-default">Publikasikan</button>
 	  </form>
 	</div>
 </body>

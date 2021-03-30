@@ -44,29 +44,28 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>{{artikel.judul}}</h2>
-	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
-	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
-	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
-	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
-	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
-	  </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Judul</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for artikel in data_artikel %}
+          <tr>
+          <td>{{artikel['judul']}}</td>
+          <td>{{artikel['status']}}</td>
+          <td><a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary" target="blank">Detail Artikel</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+    </div>
+	  
 	</div>
 </body>
 </html>

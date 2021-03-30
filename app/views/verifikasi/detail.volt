@@ -45,28 +45,43 @@
 		  </div>
 		</nav>
 	  <h2>{{artikel.judul}}</h2>
-	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
 	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
 	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
-	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
-	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
-	  </form>
+	  <br>
+	  Status: {{status.nama_status}} <br>
+	  Catatan: <br>
+	  - Catatan penilik: {{artikel.catatan_penilik}} <br>
+	  - Catatan penulis: {{artikel.catatan_penulis}} <br>
+    <div id="elemen1">
+      <a href="../terima/{{artikel.id_artikel}}" class="btn btn-success">Publikasikan</a>
+      <a href="../tolak/{{artikel.id_artikel}}" class="btn btn-danger">Tolak</a>
+      {% if (artikel.catatan_penilik == NULL) %}
+      	<a class="btn btn-info" id="button1">Tambahkan catatan revisi</a></li>
+      {% endif %}
+    </div>  
+    <div id="elemen2" style="display: none">
+      <form action="{{ url("verifikasi/catatan_penilik") }}" method="post">
+        <input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
+        <div class="form-group" style="margin-top: 50px">
+          <label for="catatan_penilik">Tambahkan catatan revisi:</label>
+          <textarea id="catatan_penilik" name="catatan_penilik" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Tambahkan</button>
+      </form>
+      <a class="btn btn-danger" id="button2">Batal</a></li>
+    </div>
 	</div>
+  <script>
+    $(document).ready(function(){
+      $("#button1").click(function(){
+        $("#elemen1").fadeOut();
+        $("#elemen2").fadeIn();
+      });
+      $("#button2").click(function(){
+        $("#elemen2").fadeOut();
+        $("#elemen1").fadeIn();
+      });
+    });
+  </script>
 </body>
 </html>

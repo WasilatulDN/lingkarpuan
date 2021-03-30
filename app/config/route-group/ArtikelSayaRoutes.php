@@ -13,6 +13,34 @@ class ArtikelSayaRoutes extends RouterGroup
         $this->setPrefix('/artikelsaya');
 
         $this->addGet(
+            '/',
+            [
+                'action' => 'artikelsaya',
+            ]
+        );
+
+        $this->addGet(
+            '/detail/{id}',
+            [
+                'action' => 'detail',
+            ]
+        );  
+
+        $this->addGet(
+            '/konfirmasi/{id}',
+            [
+                'action' => 'konfirmasi',
+            ]
+        );        
+
+        $this->addPost(
+            '/catatan_penulis',
+            [
+                'action' => 'catatanpenulis',
+            ]
+        );          
+
+        $this->addGet(
             '/buat',
             [
                 'action' => 'buat',

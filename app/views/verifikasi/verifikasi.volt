@@ -44,29 +44,52 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>{{artikel.judul}}</h2>
-	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
-	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
-	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
-	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
-	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
-	  </form>
+	  <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#tab1">Verifikasi Artikel</a></li>
+      <li><a data-toggle="tab" href="#tab2">Konfirmasi Penulis</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab1" class="tab-pane fade in active">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for verifikasi in data_verifikasi %}
+              <tr>
+              <td>{{verifikasi.judul}}</td>
+              <td><a href="detail/{{verifikasi.id_artikel}}" class="btn btn-primary" target="blank">Detail Artikel</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div id="tab2" class="tab-pane fade">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for konfirmasi in data_konfirmasi %}
+              <tr>
+              <td>{{konfirmasi['judul']}}</td>
+              <td>{{konfirmasi['status']}}</td>
+              <td><a href="detail/{{konfirmasi['id_artikel']}}" class="btn btn-primary" target="blank">Detail Artikel</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+	  
 	</div>
 </body>
 </html>

@@ -9,7 +9,7 @@ class ArtikelController extends Controller
 {
 	public function artikelAction()
 	{
-		$artikels = artikel::find();
+		$artikels = artikel::find("id_status_artikel='4'");
 		$this->view->artikels = $artikels;
 	}
 
