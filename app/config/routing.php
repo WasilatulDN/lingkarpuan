@@ -25,9 +25,13 @@ $di->set(
             new VerifikasiRoutes()
         );
 
-        // $router->mount(
-        //     new KonsultasiRoutes()
-        // );
+        $router->mount(
+            new KonsultasiRoutes()
+        );
+
+        $router->mount(
+            new JadwalRoutes()
+        );
 
         // $router->mount(
         //     new PengajuanRoutes()

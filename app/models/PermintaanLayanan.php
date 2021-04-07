@@ -13,4 +13,7 @@ class PermintaanLayanan extends Model
     public $durasi;
     public $jam_selesai;
     public $jenis_layanan;
+
+    const PSIKOLOGI = 1;
+    const HUKUM = 2;
 }

@@ -46,7 +46,7 @@
 		</nav>
 	  <h2>{{artikel.judul}}</h2>
 	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
-	  <h5><a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
+	  <h5><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
 	  {{artikel.isi_artikel}}
 	  <br> 
 	  <h3>Komentar</h3>

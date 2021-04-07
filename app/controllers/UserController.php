@@ -37,13 +37,13 @@ class UserController extends Controller
         $user->kode_verifikasi = $kode_verifikasi;
         
         //kirim email verifikasi
-        $this->sendlink($kode_verifikasi, $email, $nama);
+        // $this->sendlink($kode_verifikasi, $email, $nama);
         // var_dump($user);
         $user->save();
         $this->response->redirect('user/login');
     }
 
-    public function sendlink($kode, $email, $nama)
+    private function sendlink($kode, $email, $nama)
     {
         $message = file_get_contents(APP_PATH . '/templates/emailverifikasi.html');
         $link = "http://localhost/lingkarpuan/user/verifikasi?email=" . $email . "&verifikasi=" . $kode;

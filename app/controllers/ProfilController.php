@@ -7,7 +7,7 @@ use Phalcon\Security\Random;
 
 class ProfilController extends Controller
 {
-	public function profilAction($id)
+	public function detailAction($id)
 	{
 		$artikel = artikel::find("id_user='$id'");
 		$user = user::findFirst("id_user='$id'");
