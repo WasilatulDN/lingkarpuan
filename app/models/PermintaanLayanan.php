@@ -16,4 +16,7 @@ class PermintaanLayanan extends Model
 
     const PSIKOLOGI = 1;
     const HUKUM = 2;
+    const MENUNGGU = 1;
+    const DITERIMA = 2;
+    const DITOLAK = 3;
 }

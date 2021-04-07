@@ -33,9 +33,9 @@ $di->set(
             new JadwalRoutes()
         );
 
-        // $router->mount(
-        //     new PengajuanRoutes()
-        // );
+        $router->mount(
+            new PengajuanRoutes()
+        );
 
         // $router->mount(
         //     new RuangKonsultasiRoutes()

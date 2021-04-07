@@ -12,6 +12,26 @@ class PengajuanRoutes extends RouterGroup
 
         $this->setPrefix('/pengajuan');
 
+        $this->addGet(
+            '/daftar',
+            [
+                'action' => 'daftar',
+            ]
+        );
+
+        $this->addGet(
+            '/terima/{id}',
+            [
+                'action' => 'terima',
+            ]
+        );
+
+        $this->addGet(
+            '/tolak/{id}',
+            [
+                'action' => 'tolak',
+            ]
+        );
         
     }
 }

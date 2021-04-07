@@ -27,6 +27,13 @@ class KonsultasiRoutes extends RouterGroup
         );
 
         $this->addGet(
+            '/psikologi/daftar',
+            [
+                'action' => 'daftarpsikologi',
+            ]
+        );
+
+        $this->addGet(
             '/hukum',
             [
                 'action' => 'hukum',
@@ -37,6 +44,13 @@ class KonsultasiRoutes extends RouterGroup
             '/hukum',
             [
                 'action' => 'posthukum',
+            ]
+        );
+
+        $this->addGet(
+            '/hukum/daftar',
+            [
+                'action' => 'daftarhukum',
             ]
         );
     }
