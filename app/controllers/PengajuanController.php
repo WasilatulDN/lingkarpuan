@@ -11,13 +11,12 @@ class PengajuanController extends Controller
 	{
 		$id_user = $this->session->get('user')['id'];
 
-		$layanans = PermintaanLayanan::find("id_konsultan='$id_user' and id_status_layanan != 3");
+		$layanans = PermintaanLayanan::find("id_konsultan='$id_user' and id_status_layanan = 1");
 
 		$data_layanan = array();
 
         foreach ($layanans as $layanan) {
             $klien = user::findFirst("id_user='$layanan->id_user'");
-            $status = StatusLayanan::findFirst("id_status_layanan='$layanan->id_status_layanan'");
             $data_layanan[] = array(
               'id_layanan' => $layanan->id_layanan,
               'klien' => $klien->nama,
@@ -25,7 +24,29 @@ class PengajuanController extends Controller
               'jam_mulai' => date('H:i', strtotime($layanan->jam_mulai)),
               // 'jam_mulai' => $layanan->jam_mulai,
               'durasi' => $layanan->durasi,
-              'status' => $status->nama_status,
+          );
+        }
+
+        $this->view->data_layanan = $data_layanan;
+	}
+
+    public function diterimaAction()
+	{
+		$id_user = $this->session->get('user')['id'];
+
+		$layanans = PermintaanLayanan::find("id_konsultan='$id_user' and id_status_layanan = 2");
+
+		$data_layanan = array();
+
+        foreach ($layanans as $layanan) {
+            $klien = user::findFirst("id_user='$layanan->id_user'");
+            $data_layanan[] = array(
+              'id_layanan' => $layanan->id_layanan,
+              'klien' => $klien->nama,
+              'tanggal' => $layanan->tanggal,
+              'jam_mulai' => date('H:i', strtotime($layanan->jam_mulai)),
+              // 'jam_mulai' => $layanan->jam_mulai,
+              'durasi' => $layanan->durasi,
           );
         }
 

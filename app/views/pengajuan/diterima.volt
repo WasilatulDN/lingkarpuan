@@ -52,9 +52,9 @@
         <div class="container" style="padding: 4rem 0;">
             <div class="panel panel-default">
                 {% if(session.get('user')['role'] == 2) %}
-                    <div class="panel-heading">Daftar Pegajuan Konsultasi Psikologi</div>
+                    <div class="panel-heading">Daftar Konsultasi Psikologi</div>
                 {% elseif(session.get('user')['role'] == 3) %}
-                    <div class="panel-heading">Daftar Pengajuan Konsultasi Hukum</div>
+                    <div class="panel-heading">Daftar Konsultasi Hukum</div>
                 {% endif %}
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -71,7 +71,7 @@
                                 <td>{{layanan['jam_mulai']}}</td>
                                 <td>{{layanan['durasi']}}</td>
                                 <td>{{layanan['klien']}}</td>
-                                <td><a href="terima/{{layanan['id_layanan']}}" class="btn btn-success">Terima</a> <a href="tolak/{{layanan['id_layanan']}}" class="btn btn-danger">Tolak</a></td>                                
+                                <td><a href="../ruang_konsultasi/chat/{{layanan['id_layanan']}}" class="btn btn-primary">Chat</a></td>                                
                             </tr>
                         {% endfor %}
                     </table>

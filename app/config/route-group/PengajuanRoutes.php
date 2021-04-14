@@ -20,6 +20,13 @@ class PengajuanRoutes extends RouterGroup
         );
 
         $this->addGet(
+            '/diterima',
+            [
+                'action' => 'diterima',
+            ]
+        );
+
+        $this->addGet(
             '/terima/{id}',
             [
                 'action' => 'terima',
