@@ -60,6 +60,7 @@
                             <th>Durasi</th>
                             <th>Psikolog</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                         {% for layanan in data_layanan %}
                             <tr>
@@ -68,6 +69,7 @@
                                 <td>{{layanan['durasi']}}</td>
                                 <td>{{layanan['psikolog']}}</td>
                                 <td>{{layanan['status']}}</td>
+                                <td><a href="../../ruang_konsultasi/chat/{{layanan['id_layanan']}}" class="btn btn-primary" target="blank">Chat</a></td>
                             </tr>
                         {% endfor %}
                     </table>

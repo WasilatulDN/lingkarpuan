@@ -12,6 +12,7 @@ class Bootstrap extends Application
 	include_once APP_PATH. '/config/loader.php';
 	include_once APP_PATH. '/config/services.php';
 	include_once APP_PATH. '/config/routing.php';
+	include_once BASE_PATH. '../vendor/autoload.php';
 
 	$this->setDI($di);
 	}

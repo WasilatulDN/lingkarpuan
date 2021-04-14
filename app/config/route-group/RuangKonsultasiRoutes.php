@@ -12,6 +12,11 @@ class RuangKonsultasiRoutes extends RouterGroup
 
         $this->setPrefix('/ruang_konsultasi');
 
-        
+        $this->addGet(
+            '/chat/{id}',
+            [
+                'action' => 'chat',
+            ]
+        );        
     }
 }

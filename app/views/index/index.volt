@@ -44,7 +44,7 @@
 		    {% endif %}
 		  </div>
 		</nav>
-	  <h2>Selamat datang di Lingkar Puan</h2>
+	  <h2>Selamat datang di Lingkar Puan, {{session.get('user')['nama']}}</h2>
 	  
 	</div>
 </body>

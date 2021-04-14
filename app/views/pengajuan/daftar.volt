@@ -76,7 +76,7 @@
                                 {% if(layanan['status'] == 'menunggu') %}
                                     <td><a href="terima/{{layanan['id_layanan']}}" class="btn btn-success">Terima</a> <a href="tolak/{{layanan['id_layanan']}}" class="btn btn-danger">Tolak</a></td>
                                 {% elseif(layanan['status'] == 'diterima') %}
-                                    <td><a href="terima/{{layanan['id_layanan']}}" class="btn btn-primary">Chat</a></td>
+                                    <td><a href="../ruang_konsultasi/chat/{{layanan['id_layanan']}}" class="btn btn-primary" target="blank">Chat</a></td>
                                 {% endif %}
                                 
                             </tr>

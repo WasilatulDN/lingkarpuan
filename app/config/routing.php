@@ -37,9 +37,9 @@ $di->set(
             new PengajuanRoutes()
         );
 
-        // $router->mount(
-        //     new RuangKonsultasiRoutes()
-        // );
+        $router->mount(
+            new RuangKonsultasiRoutes()
+        );
 
         $router->addGet(
             '/',
