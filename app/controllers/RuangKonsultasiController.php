@@ -1,11 +1,10 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-use App\Events\UserProtectController;
-use Phalcon\Security\Random;
+// use Phalcon\Mvc\Controller;
+// use Phalcon\Http\Response;
+use App\Events\RuangKonsultasiProtectController;
 
-class RuangKonsultasiController extends Controller
+class RuangKonsultasiController extends RuangKonsultasiProtectController
 {
     public function chatAction($id)
     {

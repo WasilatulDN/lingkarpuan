@@ -1,11 +1,11 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-use App\Events\UserProtectController;
+// use Phalcon\Mvc\Controller;
+// use Phalcon\Http\Response;
+use App\Events\ArtikelSayaProtectController;
 use Phalcon\Security\Random;
 
-class ArtikelSayaController extends Controller
+class ArtikelSayaController extends ArtikelSayaProtectController
 {
   public function artikelsayaAction()
   {
@@ -62,7 +62,7 @@ class ArtikelSayaController extends Controller
 	public function postbuatAction()
 	{
 
-		$random = new \Phalcon\Security\Random();
+		$random = new Random();
     $artikel = new Artikel();
 
     $id_artikel = $random->uuid();

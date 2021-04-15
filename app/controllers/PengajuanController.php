@@ -1,11 +1,11 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-use App\Events\UserProtectController;
+// use Phalcon\Mvc\Controller;
+// use Phalcon\Http\Response;
+use App\Events\PengajuanProtectController;
 use Phalcon\Security\Random;
 
-class PengajuanController extends Controller
+class PengajuanController extends PengajuanProtectController
 {
 	public function daftarAction()
 	{

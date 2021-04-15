@@ -49,7 +49,10 @@
 	    <div class="form-group">
 	      <label for="email">Email:</label>
 	      <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" name="email">
-	    </div>
+        {% if messages['email'] is defined %}
+          <p class="block-content nice-copy">{{messages['email']}}</p>
+        {% endif %}
+      </div>
 	    <div class="form-group">
 	      <label for="nama">Nama:</label>
 	      <input type="text" class="form-control" id="nama" placeholder="Masukkan nama anda" name="nama">
@@ -57,7 +60,17 @@
 	    <div class="form-group">
 	      <label for="password">Password:</label>
 	      <input type="password" class="form-control" id="password" placeholder="Masukkan password anda" name="password">
-	    </div>
+	      {% if messages['password'] is defined %}
+          <p class="block-content nice-copy">{{messages['password']}}</p>
+        {% endif %}
+		</div>
+    <div class="form-group">
+	      <label for="konfirmasi_password">Konfirmasi password:</label>
+	      <input type="password" class="form-control" id="konfirmasi_password" placeholder="Masukkan konfirmasi password anda" name="konfirmasi_password">
+	      {% if messages['konfirmasi_password'] is defined %}
+          <p class="block-content nice-copy">{{messages['konfirmasi_password']}}</p>
+        {% endif %}
+		</div>
 	    <button type="submit" class="btn btn-default">Buat Akun</button>
 	  </form>
 	</div>

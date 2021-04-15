@@ -2,102 +2,57 @@
 namespace App\Validation;
 
 use Phalcon\Validation;
+use Phalcon\Mvc\Model;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Regex;
 use Phalcon\Validation\Validator\StringLength;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\Confirmation;
+use Phalcon\Validation\Validator\Uniqueness;
+use User;
+
+// use App\Model\User;
+// use User as GlobalUser;
 
 class UserValidation extends Validation
 {
     public function initialize(){
 
     $this->add(
-        'username',
-        new PresenceOf(
-            [
-                'message' => 'The username is required',
-            ]
-        )
-    );
-
-    $this->add(
-        'username',
-        new Regex([
-            'pattern' => '/^[A-Za-z\S]+/',
-            'message' => 'The username must be alphabet and has no whitespace'
-        ])
-    );
-
-    $this->add(
-        'nama',
-        new PresenceOf(
-            [
-                'message' => 'The nama is required',
-            ]
-        )
-    );
-
-    $this->add(
-        'nama',
-        new StringLength([
-            'max' => 20,
-            'min' => 5
-        ])
-    );
-
-    $this->add(
-        'password',
-        new PresenceOf(
-            [
-                'message' => 'The password is required',
-            ]
-        )
-    );
-
-    $this->add(
         'password',
         new Regex(
             [
                 'pattern' => '/[^_\n\r\s]{8,}/',
-                'message' => 'Password must contains at least 8 character',
+                'message' => 'Kata sandi harus terdiri dari minimal 8 karakter',
             ]
         )
     );
 
     $this->add(
-        'password2',
-        new PresenceOf(
-            [
-                'message' => 'The confirmation password is required',
-            ]
-        )
-    );
-
-    $this->add(
-        'password2',
+        'konfirmasi_password',
         new Confirmation(
             [
-                "message" => "Password doesn't match confirmation",
+                "message" => "Konfirmasi kata sandi tidak sesuai",
                 "with"    => "password",
             ]
         )
     );
 
-    $this->add(
-        'email',
-        new PresenceOf(
-            [
-                'message' => 'The email is required',
-            ]
-        )
-    );
+    // $this->add(
+    //     'email',
+    //     new PresenceOf(
+    //         [
+    //             'message' => 'The email is required',
+    //         ]
+    //     )
+    // );
 
     $this->add(
         'email',
-        new Email(
+        new Uniqueness(
             [
-                'message' => 'Email must follow email format',
+                'model' => new User(),
+                'message' => 'Email sudah digunakan',
             ]
         )
     );

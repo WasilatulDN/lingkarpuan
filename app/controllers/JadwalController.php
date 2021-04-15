@@ -1,11 +1,11 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-use App\Events\UserProtectController;
+// use Phalcon\Mvc\Controller;
+// use Phalcon\Http\Response;
+use App\Events\JadwalProtectController;
 use Phalcon\Security\Random;
 
-class JadwalController extends Controller
+class JadwalController extends JadwalProtectController
 {
 	public function buatAction()
 	{
@@ -14,7 +14,7 @@ class JadwalController extends Controller
 
 	public function postbuatAction()
 	{
-		$random = new \Phalcon\Security\Random();
+		$random = new Random();
 		$jadwal = new Jadwal();
 
 		$id_jadwal = $random->uuid();

@@ -1,11 +1,11 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-use App\Events\UserProtectController;
+// use Phalcon\Mvc\Controller;
+// use Phalcon\Http\Response;
+use App\Events\KonsultasiProtectController;
 use Phalcon\Security\Random;
 
-class KonsultasiController extends Controller
+class KonsultasiController extends KonsultasiProtectController
 {
 	public function hukumAction()
     {
@@ -24,7 +24,7 @@ class KonsultasiController extends Controller
 
     public function postpsikologiAction()
     {
-        $random = new \Phalcon\Security\Random();
+        $random = new Random();
         $layanan = new PermintaanLayanan();
 
         $id_layanan = $random->uuid();
@@ -62,7 +62,7 @@ class KonsultasiController extends Controller
 
     public function posthukumAction()
     {
-        $random = new \Phalcon\Security\Random();
+        $random = new Random();
         $layanan = new PermintaanLayanan();
 
         $id_layanan = $random->uuid();

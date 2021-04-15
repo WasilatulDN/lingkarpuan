@@ -1,25 +1,38 @@
 <?php
 
-use Phalcon\Mvc\Controller;
+// use Phalcon\Mvc\Controller;
 use Phalcon\Http\Response;
-use Phalcon\Mvc\Dispatcher;
+// use Phalcon\Mvc\Dispatcher;
 use App\Validation\UserValidation;
 use App\Events\UserProtectController;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Phalcon\Security\Random;
 
-class UserController extends Controller
+class UserController extends UserProtectController
 {
-    
+    // private $messages;
     public function registerAction()
     {
-		
+        $this->view->messages = $this->messages;
     }
 
 
     public function postregisterAction()
     {
-        $random = new \Phalcon\Security\Random();
+        $val = new UserValidation();
+        $messages = $val->validate($_POST);
+
+        if (count($messages)) {
+            $this->messages = array();
+            foreach ($messages as $m) {
+                $this->messages[$m->getField()] = $m;
+            }
+            $this->dispatcher->forward(['action' => 'register']);
+            return;
+        }
+
+        $random = new Random();
         $user = new User();
 
         $id_user = $random->uuid();
@@ -35,7 +48,7 @@ class UserController extends Controller
         $user->password = $this->security->hash($password);
         $user->status_verifikasi = 0;
         $user->kode_verifikasi = $kode_verifikasi;
-        
+
         //kirim email verifikasi
         // $this->sendlink($kode_verifikasi, $email, $nama);
         // var_dump($user);
@@ -75,7 +88,7 @@ class UserController extends Controller
 
             $mail->send();
             echo 'Message has been sent';
-           // print_r('Message has been sent');
+            // print_r('Message has been sent');
             //die();
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
@@ -86,7 +99,6 @@ class UserController extends Controller
 
     public function loginAction()
     {
-
     }
 
     public function storeloginAction()
@@ -98,8 +110,7 @@ class UserController extends Controller
 
         if ($user) {
             if ($this->security->checkHash($password, $user->password)) {
-                if($user->status_verifikasi == 1)
-                {
+                if ($user->status_verifikasi == 1) {
                     $this->session->set(
                         'user',
                         [
@@ -109,21 +120,15 @@ class UserController extends Controller
                         ]
                     );
                     (new Response())->redirect()->send();
-                }
-                else
-                {
+                } else {
                     $this->response->redirect('user/login');
                 }
-                
-            }
-            else{
+            } else {
                 $this->response->redirect('user/login');
             }
-        }
-        else{
+        } else {
             $this->response->redirect('user/login');
         }
-
     }
 
     public function logoutAction()
@@ -151,16 +156,12 @@ class UserController extends Controller
             $user->status_verifikasi = 1;
             $user->save();
             $this->response->redirect('');
-        }
-        else
-        {
+        } else {
             $this->response->redirect('user/gagalverifikasi');
         }
     }
 
     public function gagalverifikasiAction()
     {
-
     }
-
 }

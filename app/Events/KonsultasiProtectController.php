@@ -3,11 +3,11 @@ namespace App\Events;
 
 use Phalcon\Mvc\Controller;
 
-class UserProtectController extends Controller
+class KonsultasiProtectController extends Controller
 {
     public function beforeExecuteRoute()
     {
-        if($this->session->get('user')){
+        if($this->session->get('user')['role'] != 1){
             return $this->response->redirect();
         }
     }
