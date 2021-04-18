@@ -2,16 +2,19 @@
 
 // use Phalcon\Mvc\Controller;
 // use Phalcon\Http\Response;
+use App\Validation\KonsultasiValidation;
 use App\Events\KonsultasiProtectController;
 use Phalcon\Security\Random;
 
 class KonsultasiController extends KonsultasiProtectController
 {
+    private $messages;
+
 	public function hukumAction()
     {
     	$hukums = user::find("id_role='3'");
 		$this->view->hukums = $hukums;
-
+        $this->view->messages = $this->messages;
 
     }
 
@@ -19,11 +22,23 @@ class KonsultasiController extends KonsultasiProtectController
     {
     	$psikologs = user::find("id_role='2'");
 		$this->view->psikologs = $psikologs;
-
+        $this->view->messages = $this->messages;
     }
 
     public function postpsikologiAction()
     {
+        $val = new KonsultasiValidation();
+        $messages = $val->validate($_POST);
+
+        if (count($messages)) {
+            $this->messages = array();
+            foreach ($messages as $m) {
+                $this->messages[$m->getField()] = $m;
+            }
+            $this->dispatcher->forward(['action' => 'psikologi']);
+            return;
+        }
+
         $random = new Random();
         $layanan = new PermintaanLayanan();
 
@@ -62,6 +77,18 @@ class KonsultasiController extends KonsultasiProtectController
 
     public function posthukumAction()
     {
+        $val = new KonsultasiValidation();
+        $messages = $val->validate($_POST);
+
+        if (count($messages)) {
+            $this->messages = array();
+            foreach ($messages as $m) {
+                $this->messages[$m->getField()] = $m;
+            }
+            $this->dispatcher->forward(['action' => 'hukum']);
+            return;
+        }
+
         $random = new Random();
         $layanan = new PermintaanLayanan();
 

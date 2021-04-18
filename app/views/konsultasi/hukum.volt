@@ -57,10 +57,16 @@
                         <div class="form-group">
                             <label for="tanggal">Tanggal</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            {% if(messages['tanggal'] is defined) %}
+                                <p class="block-content nice-copy">{{messages['tanggal']}}</p>
+                            {% endif %}
                         </div>
                         <div class="form-group">
                             <label for="jam">Jam</label>
                             <input type="time" class="form-control" id="jam" name="jam">
+                            {% if(messages['jam'] is defined) %}
+                                <p class="block-content nice-copy">{{messages['jam']}}</p>
+                            {% endif %}
                         </div>
                         <div class="form-check">
                             <label class="form-check-label" for="durasi">Durasi</label>
