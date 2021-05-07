@@ -60,7 +60,7 @@ class VerifikasiController extends VerifikasiProtectController
   {
     $id_artikel = $this->request->getPost('id_artikel');
     $judul = $this->request->getPost('judul');
-    $isi_artikel = $this->request->getPost('isi_artikel');
+    $isi_artikel = $this->request->getPost('isi');
 
     if (true == $this->request->hasFiles() && $this->request->isPost()) {
       $upload_dir = __DIR__ . '/../../public/uploads/';
