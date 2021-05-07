@@ -60,7 +60,7 @@
 	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
 	    <div class="form-group">
 	      <label for="judul">Judul Artikel:</label>
-	      <input type="text" class="form-control" id="judul" value={{artikel.judul}} name="judul">
+	      <input type="text" class="form-control" id="judul" value="{{artikel.judul}}" name="judul">
 	    </div>
 	    <div class="form-group">
 	      <label for="isi">Isi Artikel:</label>

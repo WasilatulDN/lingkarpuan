@@ -7,7 +7,7 @@ class ArtikelSayaProtectController extends Controller
 {
     public function beforeExecuteRoute()
     {
-        if($this->session->get('user')['role'] != 1 && !$this->session->get('user')['role'] != 2 && !$this->session->get('user')['role'] != 3){
+        if($this->session->get('user')['role'] != 1 && $this->session->get('user')['role'] != 2 && $this->session->get('user')['role'] != 3){
             return $this->response->redirect();
         }
     }
