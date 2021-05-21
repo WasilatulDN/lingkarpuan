@@ -12,7 +12,7 @@ class Artikel extends Model
     public $gambar;
     public $catatan_penilik;
     public $catatan_penulis;
-    public $created_at;
+    public $updated_at;
 
     const MENUNGGU_VERIFIKASI = 1;
     const MENUNGGU_KONFIRMASI = 2;

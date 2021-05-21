@@ -10,7 +10,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
   public function artikelsayaAction()
   {
     $id_user = $this->session->get('user')['id'];
-    $artikels = Artikel::find("id_user='$id_user'");
+    $artikels = Artikel::find("id_user='$id_user' ORDER BY updated_at DESC");
 
     $data_artikel = array();
     foreach ($artikels as $artikel)
@@ -37,7 +37,10 @@ class ArtikelSayaController extends ArtikelSayaProtectController
   public function konfirmasiAction($id)
   {
     $artikel = Artikel::findFirst("id_artikel='$id'");
+    $date = date('Y/m/d h:i:s', time());
+
     $artikel->id_status_artikel = 3;
+    $artikel->updated_at = $date;
     $artikel->save();
     $this->response->redirect('artikelsaya/');
   }
@@ -46,10 +49,12 @@ class ArtikelSayaController extends ArtikelSayaProtectController
   {
     $id_artikel = $this->request->getPost('id_artikel');
     $catatan_penulis = $this->request->getPost('catatan_penulis');
+    $date = date('Y/m/d h:i:s', time());
 
     $artikel = artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 3;
     $artikel->catatan_penulis = $catatan_penulis;
+    $artikel->updated_at - $date;
     $artikel->save();
     $this->response->redirect('artikelsaya/');
   }
@@ -69,8 +74,6 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $id_user = $this->session->get('user')['id'];
     $judul = $this->request->getPost('judul');
     $isi = $this->request->getPost('isi');
-    
-    date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y/m/d h:i:s', time());
 		// echo $date; die();
 
@@ -79,7 +82,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $artikel->id_status_artikel = 1;
     $artikel->judul = $judul;
     $artikel->isi_artikel = $isi;
-    $artikel->created_at = $date;
+    $artikel->updated_at = $date;
     $artikel->save();
     $this->response->redirect();
 		

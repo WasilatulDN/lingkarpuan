@@ -8,7 +8,7 @@ class ArtikelController extends Controller
 {
     public function artikelAction()
     {
-        $artikels = artikel::find("id_status_artikel='4'");
+        $artikels = artikel::find("id_status_artikel='4' ORDER BY updated_at DESC");
         $this->view->artikels = $artikels;
     }
 
@@ -17,17 +17,7 @@ class ArtikelController extends Controller
         $artikel = artikel::findFirst("id_artikel='$id'");
         $penulis = user::findFirst("id_user='$artikel->id_user'");
         $komentars = komentar::find("id_artikel='$id' ORDER BY created_at ASC");
-        
-        // $parameter = [
-        //     'id_artikel' => $id,
-        // ];
 
-        // $komentars = Komentar::find(
-        //     [
-        //         'conditions' => 'id_artikel = :id_artikel: SORT BY created_at DESC',
-        //         'bind' => $parameter,
-        //     ]
-        // );
         // echo $penulis->nama; die();
 
         $data_komentar = array();
@@ -57,8 +47,6 @@ class ArtikelController extends Controller
         $id_user = $this->session->get('user')['id'];
         $id_artikel = $this->request->getPost('id_artikel');
         $isi_komentar = $this->request->getPost('isi_komentar');
-
-        date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y/m/d h:i:s', time());
 
         $komentar->id_komentar = $id_komentar;

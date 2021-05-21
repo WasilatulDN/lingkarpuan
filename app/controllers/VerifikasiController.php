@@ -8,15 +8,15 @@ class VerifikasiController extends VerifikasiProtectController
 {
 	public function verifikasiAction()
 	{
-		$data_verifikasi = Artikel::find("id_status_artikel='1'");
+		$data_verifikasi = Artikel::find("id_status_artikel='1' ORDER BY updated_at ASC");
     $data_konfirmasi = array();
     $konfirmasis = Artikel::find(
             [
                 'columns' => '*',
-                'conditions' => 'id_status_artikel = ?1 OR id_status_artikel = ?2',
+                'conditions' => 'id_status_artikel = ?1 OR id_status_artikel = ?2 ORDER BY id_status_artikel DESC, updated_at ASC',
                 'bind' => [
-                    1 => '2',
-                    2 => '3',
+                    1 => Artikel::MENUNGGU_KONFIRMASI,
+                    2 => Artikel::DIKONFIRMASI,
                 ]
             ]
         );
@@ -61,6 +61,7 @@ class VerifikasiController extends VerifikasiProtectController
     $id_artikel = $this->request->getPost('id_artikel');
     $judul = $this->request->getPost('judul');
     $isi_artikel = $this->request->getPost('isi');
+    $date = date('Y/m/d h:i:s', time());
 
     if (true == $this->request->hasFiles() && $this->request->isPost()) {
       $upload_dir = __DIR__ . '/../../public/uploads/';
@@ -86,6 +87,7 @@ class VerifikasiController extends VerifikasiProtectController
     $artikel->isi_artikel = $isi_artikel;
     $artikel->id_status_artikel = 4;
     $artikel->gambar = $nama_file;
+    $artikel->updated_at = $date;
     $artikel->save();
     $this->response->redirect('verifikasi/');
   }
@@ -93,7 +95,10 @@ class VerifikasiController extends VerifikasiProtectController
   public function tolakAction($id)
   {
     $artikel = artikel::findFirst("id_artikel='$id'");
+    $date = date('Y/m/d h:i:s', time());
+
     $artikel->id_status_artikel = 5;
+    $artikel->updated_at = $date;
     $artikel->save();
     $this->response->redirect('verifikasi/');
 
@@ -110,10 +115,12 @@ class VerifikasiController extends VerifikasiProtectController
   {
     $id_artikel = $this->request->getPost('id_artikel');
     $catatan_penilik = $this->request->getPost('catatan_penilik');
+    $date = date('Y/m/d h:i:s', time());
 
     $artikel = artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 2;
     $artikel->catatan_penilik = $catatan_penilik;
+    $artikel->updated_at = $date;
     $artikel->save();
     $this->response->redirect('verifikasi/');
   }
