@@ -8,4 +8,5 @@ class Komentar extends Model
     public $id_user;
     public $id_artikel;
     public $isi_komentar;
+    public $created_at;
 }
