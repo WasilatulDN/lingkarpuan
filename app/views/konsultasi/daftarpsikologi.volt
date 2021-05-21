@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+    <link rel="stylesheet" type="text/css" href="{{ url('DataTables/datatables.min.css') }}">
+    <script type="text/javascript" charset="utf8" src="{{ url('DataTables/datatables.min.js') }}"></script>
 </head>
 
 <body>
@@ -53,7 +56,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Daftar Konsultasi Psikologi</div>
                 <div class="panel-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jam Mulai</th>
+                                <th>Durasi</th>
+                                <th>Psikolog</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for layanan in data_layanan %}
+                                <tr>
+                                    <td>{{layanan['tanggal']}}</td>
+                                    <td>{{layanan['jam_mulai']}}</td>
+                                    <td>{{layanan['durasi']}}</td>
+                                    <td>{{layanan['psikolog']}}</td>
+                                    <td>{{layanan['status']}}</td>
+                                    <td><a href="../../ruang_konsultasi/chat/{{layanan['id_layanan']}}" class="btn btn-primary" target="blank">Chat</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <!--
                         <tr>
                             <th>Tanggal</th>
                             <th>Jam Mulai</th>
@@ -72,11 +98,18 @@
                                 <td><a href="../../ruang_konsultasi/chat/{{layanan['id_layanan']}}" class="btn btn-primary" target="blank">Chat</a></td>
                             </tr>
                         {% endfor %}
+                        -->
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 </body>
 
 </html>
