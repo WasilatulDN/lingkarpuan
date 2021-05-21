@@ -11,4 +11,9 @@ class User extends Model
     public $password;
     public $status_verifikasi;
     public $kode_verifikasi;
+
+    const PUAN = 1;
+    const REKAN_CERITA = 2;
+    const REKAN_HUKUM = 3;
+    const PENILIK = 4;
 }
