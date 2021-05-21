@@ -9,15 +9,29 @@ class ProfilController extends Controller
 	{
 		$artikel = artikel::find("id_user='$id'");
 		$user = user::findFirst("id_user='$id'");
+        $jadwals = Jadwal::find("id_user='$id'");
 		$this->view->artikels = $artikel;
     	$this->view->user = $user;
+
+        $data_jadwal = array();
+
+        foreach ($jadwals as $jadwal) {
+            $hari = $this->cekhari($jadwal->hari);
+            $data_jadwal[] = array(
+                'id_jadwal' => $jadwal->id_jadwal,
+                'hari' => $hari,
+                'jam_mulai' => $jadwal->jam_mulai,
+                'jam_selesai' => $jadwal->jam_selesai,
+            );
+        }
+
+        $this->view->jadwals = $data_jadwal;
 	}
 
 	
-    private function cekhari($layanan)
+    private function cekhari($harikonsultasi)
     {
-        $hari = date('l', strtotime($layanan->tanggal));
-        switch ($hari) {
+        switch ($harikonsultasi) {
             case 'Monday':
                 return 'Senin';
                 break;

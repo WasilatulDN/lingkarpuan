@@ -51,6 +51,12 @@
 		  	<li>{{artikel.judul}}</li>
 		  {% endfor %}
 	  </ul>
+	  <p>Jadwal Konsultasi:</p>
+	  <ul>
+		  {% for jadwal in jadwals %}
+		  	<li>{{jadwal['hari']}} - {{jadwal['jam_mulai']}} sampai {{jadwal['jam_selesai']}}</li>
+		  {% endfor %}
+	  </ul>
 	  
 	</div>
 </body>

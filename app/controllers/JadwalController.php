@@ -70,14 +70,74 @@ class JadwalController extends JadwalProtectController
             ]
         );
 
-        $jadwalCheckCount = count($jadwalCheck);
+        // $jadwalCheckCount = count($jadwalCheck);
 
         return $jadwalCheck ?? 0;
 
 	}
 
+    public function jadwalsayaAction($id)
+    {
+        $jadwals = Jadwal::find("id_user='$id'");
+
+        $data_jadwal = array();
+
+        foreach ($jadwals as $jadwal) {
+            $hari = $this->cekhari($jadwal->hari);
+            $data_jadwal[] = array(
+                'id_jadwal' => $jadwal->id_jadwal,
+                'hari' => $hari,
+                'jam_mulai' => $jadwal->jam_mulai,
+                'jam_selesai' => $jadwal->jam_selesai,
+            );
+        }
+
+        $this->view->jadwals = $data_jadwal;
+        
+    }
+
+    private function cekhari($harikonsultasi)
+    {
+        switch ($harikonsultasi) {
+            case 'Monday':
+                return 'Senin';
+                break;
+
+            case 'Tuesday':
+                return 'Selasa';
+                break;
+
+            case 'Wednesday':
+                return 'Rabu';
+                break;
+
+            case 'Thursday':
+                return 'Kamis';
+                break;
+
+            case 'Friday':
+                return 'Jumat';
+                break;
+
+            case 'Satudray':
+                return 'Sabtu';
+                break;
+
+            case 'Sunday':
+                return 'Minggu';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
 	public function hapusAction($id)
 	{
+        $jadwal = Jadwal::findFirst("id_jadwal='$id'");
+		$jadwal->delete();
+		return $this->response->redirect($_SERVER['HTTP_REFERER']);
 
 	}
 

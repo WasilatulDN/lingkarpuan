@@ -27,6 +27,13 @@ class JadwalRoutes extends RouterGroup
         );
 
         $this->addGet(
+            '/jadwalsaya/{id}',
+            [
+                'action' => 'jadwalsaya',
+            ]
+        );
+
+        $this->addGet(
             '/hapus/{id}',
             [
                 'action' => 'hapus',
