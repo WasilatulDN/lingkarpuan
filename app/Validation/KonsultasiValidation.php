@@ -25,7 +25,6 @@ class KonsultasiValidation extends Validation
             )
         );
         
-        date_default_timezone_set('Asia/Jakarta');
         $this->add(
             'jam',
             new Callback(
