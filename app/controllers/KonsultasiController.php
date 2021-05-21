@@ -133,10 +133,11 @@ class KonsultasiController extends KonsultasiProtectController
         $jam_selesai = $layanan->jam_selesai;
 
         $query_1 = 'id_user = :id_user:';
-        $query_2 = 'tanggal = :tanggal:';
-        $query_3 = 'TIME(jam_mulai) between TIME(:jam_mulai:) AND TIME(:jam_selesai:)';
-        $query_4 = 'TIME(jam_selesai) between TIME(:jam_mulai:) AND TIME(:jam_selesai:)';
-        $query_5 = 'TIME(:jam_mulai:) between TIME(jam_mulai) AND TIME(jam_selesai)';
+        $query_2 = 'id_status_layanan != ' . PermintaanLayanan::DITOLAK;
+        $query_3 = 'tanggal = :tanggal:';
+        $query_4 = 'TIME(jam_mulai) between TIME(:jam_mulai:) AND TIME(:jam_selesai:)';
+        $query_5 = 'TIME(jam_selesai) between TIME(:jam_mulai:) AND TIME(:jam_selesai:)';
+        $query_6 = 'TIME(:jam_mulai:) between TIME(jam_mulai) AND TIME(jam_selesai)';
 
         $parameter = [
             'id_user' => $id_user,
@@ -147,7 +148,7 @@ class KonsultasiController extends KonsultasiProtectController
 
         $layananCheck = PermintaanLayanan::findFirst(
             [
-                'conditions' => $query_1.' AND '.$query_2.' AND ('.$query_3.' OR '.$query_4.' OR '.$query_5.' )',
+                'conditions' => $query_1.' AND '.$query_2.' AND '.$query_3.' AND ('.$query_4.' OR '.$query_5.' OR '.$query_6.' )',
                 'bind' => $parameter,
             ]
         );
