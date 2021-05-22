@@ -111,12 +111,14 @@ class UserController extends UserProtectController
         if ($user) {
             if ($this->security->checkHash($password, $user->password)) {
                 if ($user->status_verifikasi == 1) {
+                    $role = Role::findFirst("id_role='$user->id_role'");
                     $this->session->set(
                         'user',
                         [
                             'id' => $user->id_user,
                             'nama' => $user->nama,
                             'role' => $user->id_role,
+                            'nama_role' => $role->nama_role,
                         ]
                     );
                     (new Response())->redirect()->send();

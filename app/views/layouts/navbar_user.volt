@@ -101,7 +101,7 @@
                             <div class="media mx-auto">
                                 <div class="media-body">
                                     <h5>{{session.get('user')['nama']}}</h5>
-                                    <p>{{role}}</p>
+                                    <p>{{session.get('user')['nama_role']}}</p>
                                 </div>
                             </div>
                         </div>
