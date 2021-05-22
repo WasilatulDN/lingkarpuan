@@ -37,7 +37,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
   public function konfirmasiAction($id)
   {
     $artikel = Artikel::findFirst("id_artikel='$id'");
-    $date = date('Y/m/d h:i:s', time());
+    $date = date('Y/m/d H:i:s', time());
 
     $artikel->id_status_artikel = 3;
     $artikel->updated_at = $date;
@@ -49,7 +49,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
   {
     $id_artikel = $this->request->getPost('id_artikel');
     $catatan_penulis = $this->request->getPost('catatan_penulis');
-    $date = date('Y/m/d h:i:s', time());
+    $date = date('Y/m/d H:i:s', time());
 
     $artikel = artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 3;
@@ -74,7 +74,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $id_user = $this->session->get('user')['id'];
     $judul = $this->request->getPost('judul');
     $isi = $this->request->getPost('isi');
-		$date = date('Y/m/d h:i:s', time());
+		$date = date('Y/m/d H:i:s', time());
 		// echo $date; die();
 
     $artikel->id_artikel = $id_artikel;

@@ -61,7 +61,7 @@ class VerifikasiController extends VerifikasiProtectController
     $id_artikel = $this->request->getPost('id_artikel');
     $judul = $this->request->getPost('judul');
     $isi_artikel = $this->request->getPost('isi');
-    $date = date('Y/m/d h:i:s', time());
+    $date = date('Y/m/d H:i:s', time());
 
     if (true == $this->request->hasFiles() && $this->request->isPost()) {
       $upload_dir = __DIR__ . '/../../public/uploads/';
@@ -95,7 +95,7 @@ class VerifikasiController extends VerifikasiProtectController
   public function tolakAction($id)
   {
     $artikel = artikel::findFirst("id_artikel='$id'");
-    $date = date('Y/m/d h:i:s', time());
+    $date = date('Y/m/d H:i:s', time());
 
     $artikel->id_status_artikel = 5;
     $artikel->updated_at = $date;
@@ -115,7 +115,7 @@ class VerifikasiController extends VerifikasiProtectController
   {
     $id_artikel = $this->request->getPost('id_artikel');
     $catatan_penilik = $this->request->getPost('catatan_penilik');
-    $date = date('Y/m/d h:i:s', time());
+    $date = date('Y/m/d H:i:s', time());
 
     $artikel = artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 2;

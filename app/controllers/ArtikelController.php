@@ -47,7 +47,7 @@ class ArtikelController extends Controller
         $id_user = $this->session->get('user')['id'];
         $id_artikel = $this->request->getPost('id_artikel');
         $isi_komentar = $this->request->getPost('isi_komentar');
-		$date = date('Y/m/d h:i:s', time());
+		$date = date('Y/m/d H:i:s', time());
 
         $komentar->id_komentar = $id_komentar;
         $komentar->id_user = $id_user;

@@ -19,6 +19,8 @@ class Bootstrap extends Application
 
 public function init()
 	{
+		date_default_timezone_set('Asia/Jakarta');
+		
 		$debug = new \Phalcon\Debug();
 		$debug->listen();
 

@@ -31,7 +31,7 @@ class KonsultasiValidation extends Validation
                 [
                     "message" => "Cek kembali jam konsultasi",
                     "callback" => function ($data) {
-                        if ($data['tanggal'] == date("Y-m-d") && $data['jam'] < date("h:i")) {
+                        if ($data['tanggal'] == date("Y-m-d") && $data['jam'] < date("H:i")) {
                             return false;
                         }
                         return true;

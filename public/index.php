@@ -15,8 +15,6 @@ define('APP_PATH', BASE_PATH . '/app');
 
 require_once APP_PATH. '/Bootstrap.php';
 
-date_default_timezone_set('Asia/Jakarta');
-
 $app = new Bootstrap();
 
 $app->init();
