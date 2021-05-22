@@ -76,8 +76,9 @@ class JadwalController extends JadwalProtectController
 
 	}
 
-    public function jadwalsayaAction($id)
+    public function jadwalsayaAction()
     {
+        $id = $this->session->get('user')['id'];
         $jadwals = Jadwal::find("id_user='$id'");
 
         $data_jadwal = array();
@@ -137,8 +138,7 @@ class JadwalController extends JadwalProtectController
 	{
         $jadwal = Jadwal::findFirst("id_jadwal='$id'");
 		$jadwal->delete();
-		return $this->response->redirect($_SERVER['HTTP_REFERER']);
-
+		return $this->back();
 	}
 
 }
