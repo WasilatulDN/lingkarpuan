@@ -74,6 +74,7 @@
     <!-- END MAIN CONTAINER -->
 
     {% include 'layouts/script.volt' %}
+    {% block custom_script %}{% endblock %}
     
 </body>
 </html>
