@@ -9,7 +9,21 @@ class ArtikelController extends Controller
     public function artikelAction()
     {
         $artikels = artikel::find("id_status_artikel='4' ORDER BY updated_at DESC");
-        $this->view->artikels = $artikels;
+
+        $data_artikel = array();
+
+        foreach ($artikels as $artikel) {
+            $penulis_artikel = user::findFirst("id_user='$artikel->id_user'");
+            $data_artikel[] = array(
+                'id_artikel' => $artikel->id_artikel,
+                'judul' => $artikel->judul,
+                'nama_user' => $penulis_artikel->nama,
+                'gambar' => $artikel->gambar,
+                'tanggal' => $artikel->updated_at,
+            );
+        }
+
+        $this->view->artikels = $data_artikel;
     }
 
     public function detailAction($id)
@@ -26,6 +40,7 @@ class ArtikelController extends Controller
             $penulis_komentar = user::findFirst("id_user='$komentar->id_user'");
             $data_komentar[] = array(
                 'id_komentar' => $komentar->id_komentar,
+                'id_user' => $komentar->id_user,
                 'nama_user' => $penulis_komentar->nama,
                 'isi_komentar' => $komentar->isi_komentar,
             );

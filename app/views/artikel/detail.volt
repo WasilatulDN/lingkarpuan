@@ -1,72 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Lingkar Puan</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<nav class="navbar navbar-default" style="background-color: #aacdbe">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">Lingkar Puan</a>
-		    </div>
-		    <ul class="nav navbar-nav">
-		      <li class="dropdown">
-		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Artikel
-		        <span class="caret"></span></a>
-		        <ul class="dropdown-menu">
-		          <li><a href="{{ url('artikel/') }}">Baca Artikel</a></li>
-		          <li><a href="{{ url('artikelsaya/buat') }}">Kirim Artikel</a></li>
-		          <li><a href="#">Artikel Saya</a></li>
-		        </ul>
-		      </li>
-		      <li class="dropdown">
-		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Konsultasi
-		        <span class="caret"></span></a>
-		        <ul class="dropdown-menu">
-		          <li><a href="#">Psikologi</a></li>
-		          <li><a href="#">Hukum</a></li>
-		        </ul>
-		      </li>
-		    </ul>
-		    {% if(session.get('user')) %}
-		    	<ul class="nav navbar-nav navbar-right">
-			      <li><a href="{{ url('user/logout') }}"><span class="glyphicon glyphicon-log-in"></span> Keluar</a></li>
-			    </ul>
-		    {% else %}
-			    <ul class="nav navbar-nav navbar-right">
-			      <li><a href="{{ url('user/register') }}"><span class="glyphicon glyphicon-user"></span> Buat Akun</a></li>
-			      <li><a href="{{ url('user/login') }}"><span class="glyphicon glyphicon-log-in"></span> Masuk</a></li>
-			    </ul>
-		    {% endif %}
-		  </div>
-		</nav>
-	  <h2>{{artikel.judul}}</h2>
-	  <img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
-	  <h5><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></h5>
-	  {{artikel.isi_artikel}}
-	  <br> 
-	  <h3>Komentar</h3>
-	  <div>
-	  	{% for komentar in data_komentar %}
-	  		<div style="margin-bottom: 20px">
-	  			dari: {{komentar['nama_user']}} <br>
-	  			komentar: {{komentar['isi_komentar']}} <br>
-	  			<a href="../hapuskomentar/{{komentar['id_komentar']}}" class="btn btn-default">Hapus Komentar</a>
-	  		</div>
-	  	{% endfor %}
-	  </div>
-	  <form action="{{ url("artikel/komentar") }}" method="post">
-	  	<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
-	    <div class="form-group" style="margin-top: 50px">
-	      <label for="isi_komentar">Tulis Komentar:</label>
-	      <textarea id="isi_komentar" name="isi_komentar" class="form-control"></textarea>
-	    </div>
-	    <button type="submit" class="btn btn-default">Kirim</button>
-	  </form>
+{% extends "layouts/base.volt" %}
+
+{% block custom_header %}{% endblock %}
+
+{% block title %}Artikel{% endblock %}
+
+
+{% block content %}
+	<div id="artikel_area" class="container layout-spacing">
+		<div id="privacyWrapper" class="">
+			<div class="privacy-container">
+				<div class="privacyContent">
+
+					<div class="privacy-content-container">
+						{% if artikel.gambar is defined %}
+							<img src="../../public/uploads/{{artikel.gambar}}" style="width: 100%">
+						{% endif %}
+						<div class="d-flex justify-content-between privacy-head">
+							<div class="privacyHeader">
+								<h1>{{artikel.judul}}</h1>
+								<p>Oleh: <a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a>
+									| {{artikel.updated_at}}
+								</p>
+							</div>
+						</div>
+						<section>
+							{{artikel.isi_artikel}}
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</body>
-</html>
+	<div id="komentar_semua" class="container layout-spacing">
+		<h4 style="font-weight: bold;"> Komentar </h4>
+		{% for key,komentar in data_komentar %}
+			<div class="card-body">
+				<div class="row">
+					<div class="col-10">
+						<h5 class="card-title">{{komentar['nama_user']}}</h5>
+						<p class="card-text">{{komentar['isi_komentar']}}</p>
+					</div>
+					{% if (session.get('user')['id'] == komentar['id_user'] OR session.get('user')['role'] == 4) %}
+						<div class="col-2">
+							<a class="btn btn-danger" href="../hapuskomentar/{{komentar['id_komentar']}}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+									<polyline points="3 6 5 6 21 6"></polyline>
+									<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+									<line x1="10" y1="11" x2="10" y2="17"></line>
+									<line x1="14" y1="11" x2="14" y2="17"></line>
+								</svg>
+							</a>
+						</div>						
+					{% endif %}
+
+				</div>
+			</div>
+			<hr style="height: 1px; border: none; background-color: #7B7B7B">
+		{% endfor %}
+	</div>
+	{% if (session.get('user')['role'] != 4) %}
+		<div id="komentar_area" class="container layout-spacing">
+			<form action="{{ url("artikel/komentar") }}" method="post">
+				<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
+				<div class="form-group mb-4">
+					<label for="Komentar">Komentar Anda</label>
+					<textarea class="form-control" id="isi_komentar" name="isi_komentar" rows="3"></textarea>
+				</div>
+				<div class="form-group mb-4">
+					<button class="btn btn-primary" type='submit'>Kirim</button>
+				</div>
+			</form>
+		</div>
+    {% endif %}
+
+{% endblock %}
+
+{% block custom_script %}{% endblock %}
