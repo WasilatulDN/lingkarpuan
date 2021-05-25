@@ -16,7 +16,6 @@
 					<h5 class="card-title">{{artikel['judul']}}</h5>
 					<p class="card-text">Oleh: {{artikel['nama_user']}} | {{artikel['tanggal']}}</p>
 					<a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary">Baca Artikel</a>
-					<a href="../verifikasi/hapus/{{artikel['id_artikel']}}" class="btn btn-danger">Hapus Artikel</a>
 				</div>
 			</div>
 		</div>
