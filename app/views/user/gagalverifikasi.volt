@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Halaman Tidak Ditemukan</title>
+    <title>Gagal Verifikasi Akun</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
 	<link href="{{url('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
 	<script src="{{url('assets/js/loader.js')}}"></script>
