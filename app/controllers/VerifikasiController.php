@@ -118,6 +118,13 @@ class VerifikasiController extends VerifikasiProtectController
 	public function hapusAction($id)
 	{
 		$artikel = artikel::findFirst("id_artikel='$id'");
+    $komentars = Komentar::find("id_artikel='$id'");
+    if($komentars)
+    {
+      foreach ($komentars as $komentar) {
+        $komentar->delete();
+      }
+    }
 		$artikel->delete();
 		$this->response->redirect('artikel/');
 	}
