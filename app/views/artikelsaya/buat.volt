@@ -19,7 +19,7 @@
 <form action="{{ url("artikelsaya/buat") }}" method="post">
     <div class="form-group">
         <label for="judul">Judul Artikel:</label>
-        <input type="text" class="form-control" id="judul" placeholder="Masukkan judul artikel anda" name="judul">
+        <input type="text" class="form-control" id="judul" placeholder="Masukkan judul artikel anda" name="judul" required>
     </div>
     <div class="form-group">
         <label for="isi">Isi Artikel:</label>

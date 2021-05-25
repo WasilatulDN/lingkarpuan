@@ -20,11 +20,11 @@
     </div>
     <div class="form-group">
         <label for="jam_mulai">Jam Mulai</label>
-        <input type="time" class="form-control" id="jam_mulai" name="jam_mulai">
+        <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
     </div>
     <div class="form-group">
         <label for="jam_selesai">Jam Selesai</label>
-        <input type="time" class="form-control" id="jam_selesai" name="jam_selesai">
+        <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
     </div>
     <button type="submit" class="btn btn-primary">Tambahkan</button>
 </form>
