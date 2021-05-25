@@ -13,7 +13,7 @@
 				<div class="privacyContent">
 					<div class="privacy-content-container">
 						{% if artikel.gambar is defined %}
-							<img src="../../public/uploads/{{artikel.gambar}}" style="width: 500px">
+							<img src="{{url('uploads/' ~ artikel.gambar)}}" style="width: 500px">
 						{% endif %}
 						<div class="d-flex justify-content-between privacy-head">
 							<div class="privacyHeader">
@@ -22,7 +22,7 @@
 									{% if (penulis.id_role == 1) %}
 										Oleh: <b>{{penulis.nama}}</b>
 									{% else %}
-										Oleh: <b><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></b>
+										Oleh: <b><a href="{{('profil/detail/' ~ penulis.id_user)}}" target="_blank">{{penulis.nama}}</a></b>
 									{% endif %}
 									
 								</p>
@@ -63,8 +63,8 @@
 		{% endif %}
 
 		<div id="update_status">
-			<a href="../terima/{{artikel.id_artikel}}" class="btn btn-success">Publikasikan</a>
-			<a href="../tolak/{{artikel.id_artikel}}" class="btn btn-danger">Tolak</a>
+			<a href="{{url('verifikasi/terima/' ~ artikel.id_artikel)}}" class="btn btn-success">Publikasikan</a>
+			<a href="{{url('verifikasi/tolak/' ~ artikel.id_artikel)}}" class="btn btn-danger">Tolak</a>
 			{% if(artikel.catatan_penilik == NULL) %}
 				<a class="btn btn-info" id="button1">Tambahkan catatan revisi</a>
 			{% endif %}

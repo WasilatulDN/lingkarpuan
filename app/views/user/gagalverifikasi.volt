@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Gagal Verifikasi Akun</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="{{url('assets/img/favicon.ico')}}"/>
 	<link href="{{url('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
 	<script src="{{url('assets/js/loader.js')}}"></script>
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -31,9 +31,9 @@
         </div>
     </div>    
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{url('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{url('bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     
     <script>

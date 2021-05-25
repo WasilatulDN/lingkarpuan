@@ -68,7 +68,7 @@
 			</div>
 			<button type="submit" class="btn btn-success">Publikasikan</button>
 		</form>
-	</div>s
+	</div>
 {% endblock %}
 
 {% block custom_script %}

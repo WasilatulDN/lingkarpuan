@@ -71,7 +71,7 @@
 											<td>{{verifikasi['judul']}}</td>
 											<td>{{verifikasi['status']}}</td>
 											<td>
-												<a href="detail/{{verifikasi['id_artikel']}}" class="btn btn-primary">Detail Artikel</a>
+												<a href="{{url('verifikasi/detail/' ~ verifikasi['id_artikel'])}}" class="btn btn-primary">Detail Artikel</a>
 											</td>
 										</tr>
 									{% endfor %}
@@ -94,7 +94,7 @@
 											<td>{{konfirmasi['judul']}}</td>
 											<td>{{konfirmasi['status']}}</td>
 											<td>
-												<a href="detail/{{konfirmasi['id_artikel']}}" class="btn btn-primary">Detail Artikel</a>
+												<a href="{{url('verifikasi/detail/' ~ konfirmasi['id_artikel'])}}" class="btn btn-primary">Detail Artikel</a>
 											</td>
 										</tr>
 									{% endfor %}
