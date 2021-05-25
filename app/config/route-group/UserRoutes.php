@@ -36,7 +36,7 @@ class UserRoutes extends RouterGroup
         $this->addPost(
             '/login',
             [
-                'action' => 'storelogin',
+                'action' => 'postlogin',
             ]
         );
 

@@ -101,7 +101,7 @@ class UserController extends UserProtectController
     {
     }
 
-    public function storeloginAction()
+    public function postloginAction()
     {
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
