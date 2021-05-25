@@ -18,9 +18,14 @@
 						<div class="d-flex justify-content-between privacy-head">
 							<div class="privacyHeader">
 								<h1>{{artikel.judul}}</h1>
-								<h5>
-									<a href="../../profil/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a>
-								</h5>
+								<p>
+									{% if (penulis.id_role == 1) %}
+										Oleh: <b>{{penulis.nama}}</b>
+									{% else %}
+										Oleh: <b><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></b>
+									{% endif %}
+									
+								</p>
 								<!-- <p>Sep 15, 2020</p> -->
 							</div>
 						</div>

@@ -9,9 +9,11 @@ class ProfilController extends Controller
 	{
 		$artikel = artikel::find("id_user='$id'");
 		$user = user::findFirst("id_user='$id'");
+        $role = role::findFirst("id_role='$user->id_role'");
         $jadwals = Jadwal::find("id_user='$id'");
 		$this->view->artikels = $artikel;
     	$this->view->user = $user;
+        $this->view->role = $role;
 
         $data_jadwal = array();
 

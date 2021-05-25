@@ -25,7 +25,12 @@
 						<div class="d-flex justify-content-between privacy-head">
 							<div class="privacyHeader">
 								<h1>{{artikel.judul}}</h1>
-								<p>Oleh: <a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a>
+								<p>Oleh: 
+									{% if (penulis.id_role == 1) %}
+										<b>{{penulis.nama}}</b>
+									{% else %}
+										<b><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></b>
+									{% endif %}
 									| {{artikel.updated_at}}
 								</p>
 							</div>
