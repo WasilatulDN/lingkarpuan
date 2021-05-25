@@ -36,7 +36,7 @@
                         
                         <td>{{artikel['judul']}}</td>
                         <td>{{artikel['status']}}</td>
-                        <td><a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary">Detail Artikel</a></td>
+                        <td><a href="{{url('artikelsaya/detail/' ~ artikel['id_artikel'])}}" class="btn btn-primary">Detail Artikel</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

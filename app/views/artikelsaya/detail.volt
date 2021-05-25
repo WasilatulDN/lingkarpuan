@@ -11,7 +11,7 @@
 				<div class="privacyContent">
 					<div class="privacy-content-container">
 						{% if artikel.gambar is defined %}
-							<img src="../../public/uploads/{{artikel.gambar}}" style="width: 100%">
+							<img src="{{url('uploads/' ~ artikel.gambar)}}" style="width: 100%">
 						{% endif %}
 						<div class="d-flex justify-content-between privacy-head">
 							<div class="privacyHeader">
@@ -55,7 +55,7 @@
 
 		{% if(artikel.id_status_artikel == 2) %}
 			<div id="revisi">
-				<a href="../konfirmasi/{{artikel.id_artikel}}" class="btn btn-success">Konfirmasi Revisi</a>
+				<a href="{{url('artikelsaya/konfirmasi/' ~ artikel.id_artikel)}}" class="btn btn-success">Konfirmasi Revisi</a>
 				<a class="btn btn-info" id="button1">Tambahkan catatan untuk tim penilik</a>
 			</div>
 			<div id="catatan_revisi" style="display: none">
