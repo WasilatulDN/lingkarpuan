@@ -45,7 +45,7 @@
 	</div>
 	<div id="komentar_semua" class="container layout-spacing">
 		<h4 style="font-weight: bold;"> Komentar </h4>
-		{% for key,komentar in data_komentar %}
+		{% for komentar in data_komentar %}
 			<div class="card-body">
 				<div class="row">
 					<div class="col-10">
