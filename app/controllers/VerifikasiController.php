@@ -8,12 +8,23 @@ class VerifikasiController extends VerifikasiProtectController
 {
 	public function verifikasiAction()
 	{
-		$data_verifikasi = Artikel::find("id_status_artikel='1' ORDER BY updated_at ASC");
+		$verifikasis = Artikel::find("id_status_artikel='1' ORDER BY updated_at DESC");
+    $data_verifikasi = array();
+    foreach ($verifikasis as $verifikasi)
+    {
+      $status = StatusArtikel::findFirst("id_status_artikel='$verifikasi->id_status_artikel'");
+      $data_verifikasi[] = array(
+          'id_artikel' => $verifikasi->id_artikel,
+          'judul' => $verifikasi->judul,
+          'status' => $status->nama_status,
+      );
+    }
+
     $data_konfirmasi = array();
     $konfirmasis = Artikel::find(
             [
                 'columns' => '*',
-                'conditions' => 'id_status_artikel = ?1 OR id_status_artikel = ?2 ORDER BY id_status_artikel DESC, updated_at ASC',
+                'conditions' => 'id_status_artikel = ?1 OR id_status_artikel = ?2 ORDER BY id_status_artikel DESC, updated_at DESC',
                 'bind' => [
                     1 => Artikel::MENUNGGU_KONFIRMASI,
                     2 => Artikel::DIKONFIRMASI,
