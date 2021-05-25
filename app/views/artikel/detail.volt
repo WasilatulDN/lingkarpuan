@@ -20,7 +20,7 @@
 					{% endif %}
 					<div class="privacy-content-container">
 						{% if artikel.gambar is defined %}
-							<img src="../../public/uploads/{{artikel.gambar}}" style="width: 100%">
+							<img src="{{url('uploads/' ~ artikel.gambar)}}" style="width: 100%">
 						{% endif %}
 						<div class="d-flex justify-content-between privacy-head">
 							<div class="privacyHeader">
@@ -29,7 +29,7 @@
 									{% if (penulis.id_role == 1) %}
 										<b>{{penulis.nama}}</b>
 									{% else %}
-										<b><a href="../../profil/detail/{{penulis.id_user}}" target="_blank">{{penulis.nama}}</a></b>
+										<b><a href="{{url('profil/detail/' ~ penulis.id_user)}}" target="_blank">{{penulis.nama}}</a></b>
 									{% endif %}
 									| {{artikel.updated_at}}
 								</p>
@@ -49,12 +49,18 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-10">
-						<h5 class="card-title">{{komentar['nama_user']}}</h5>
+						<h5 class="card-title">
+							{% if (komentar['role_user'] == 1) %}
+								{{komentar['nama_user']}}
+							{% else %}
+								<a href="{{url('profil/detail/' ~ komentar['id_user'])}}" target="_blank">{{komentar['nama_user']}}</a>
+							{% endif %}
+						</h5>
 						<p class="card-text">{{komentar['isi_komentar']}}</p>
 					</div>
 					{% if (session.get('user')['id'] == komentar['id_user'] OR session.get('user')['role'] == 4) %}
 						<div class="col-2">
-							<a class="btn btn-danger" href="../hapuskomentar/{{komentar['id_komentar']}}">
+							<a class="btn btn-danger" href="{{url('artikel/hapuskomentar/' ~ komentar['id_komentar'])}}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
 									<polyline points="3 6 5 6 21 6"></polyline>
 									<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>

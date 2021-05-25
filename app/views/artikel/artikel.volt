@@ -15,7 +15,7 @@
 				<div class="card-body">
 					<h5 class="card-title">{{artikel['judul']}}</h5>
 					<p class="card-text">Oleh: {{artikel['nama_user']}} | {{artikel['tanggal']}}</p>
-					<a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary">Baca Artikel</a>
+					<a href="{{url('artikel/detail/') ~ artikel['id_artikel']}}" class="btn btn-primary">Baca Artikel</a>
 				</div>
 			</div>
 		</div>

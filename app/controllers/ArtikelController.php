@@ -41,6 +41,7 @@ class ArtikelController extends Controller
             $data_komentar[] = array(
                 'id_komentar' => $komentar->id_komentar,
                 'id_user' => $komentar->id_user,
+                'role_user' => $penulis_komentar->id_role,
                 'nama_user' => $penulis_komentar->nama,
                 'isi_komentar' => $komentar->isi_komentar,
             );
