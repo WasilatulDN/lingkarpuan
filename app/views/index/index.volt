@@ -14,25 +14,25 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="assets/img/carousel_1.jpg" alt="First slide">
+            <img class="d-block w-100" src="{{url('assets/img/carousel_1.jpg')}}" alt="First slide">
             <div class="carousel-caption d-none d-sm-block">
                 <h3 style="color: #000000">Menemani, mendampingi, membersamai</h3>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="assets/img/carousel_2.jpg" alt="Second slide">
+            <img class="d-block w-100" src="{{url('assets/img/carousel_2.jpg')}}" alt="Second slide">
             <div class="carousel-caption d-none d-sm-block">
                 <h3 style="color: #000000">Bagikan edukasi seputar kekerasan terhadap perempuan</h3>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="assets/img/carousel_3.jpg" alt="Third slide">
+            <img class="d-block w-100" src="{{url('assets/img/carousel_3.jpg')}}" alt="Third slide">
             <div class="carousel-caption d-none d-sm-block">
                 <h3 style="color: #000000">Temukan komunitas yang ramah perempuan</h3>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="assets/img/carousel_4.jpg" alt="Fourth slide">
+            <img class="d-block w-100" src="{{url('assets/img/carousel_4.jpg')}}" alt="Fourth slide">
             <div class="carousel-caption d-none d-sm-block">
                 <h3 style="color: #000000">Konsultasikan masalahmu bersama tenaga profesional</h3>
                 <h3 style="color: #000000">lingkar puan</h3>
