@@ -32,7 +32,7 @@
                         
                         <td>{{artikel['judul']}}</td>
                         <td>{{artikel['status']}}</td>
-                        <td><a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary" target="blank">Detail Artikel</a></td>
+                        <td><a href="detail/{{artikel['id_artikel']}}" class="btn btn-primary">Detail Artikel</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -47,7 +47,12 @@
 <script src="{{url('plugins/table/datatable/datatables.js')}}"></script>
 <script>
     // var e;
-    c2 = $('#style-2').DataTable({    
+    c2 = $('#style-2').DataTable({   
+        "order": [],
+        "columnDefs": [ {
+            "targets"  : 'no-sort',
+            "orderable": false,
+        }],
         "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
     "<'table-responsive'tr>" +
     "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",

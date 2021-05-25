@@ -1,14 +1,14 @@
 {% extends "layouts/base.volt" %}
 
-{% block title %}Artikel Saya{% endblock %}
+{% block title %}{{artikel.judul}} - Artikel Saya{% endblock %}
+
+{% block content_title %}Artikel Saya{% endblock %}
 
 {% block content %}
 	<div id="artikel_area" class="container layout-spacing">
 		<div id="privacyWrapper" class="">
 			<div class="privacy-container">
 				<div class="privacyContent">
-					
-
 					<div class="privacy-content-container">
 						{% if artikel.gambar is defined %}
 							<img src="../../public/uploads/{{artikel.gambar}}" style="width: 100%">
@@ -34,20 +34,21 @@
 				<h5>{{status.nama_status}}</h5>
 			</span>
 		</div>
-		{% if artikel.catatan_penulis is defined %}
-			<div class="layout-spacing">
-				Catatan Penulis :
-				<blockquote class="blockquote">
-					<p class="d-inline">{{artikel.catatan_penulis}}</p>
-				</blockquote>
-			</div>
-		{% endif %}
 
 		{% if artikel.catatan_penilik is defined %}
 			<div class="layout-spacing">
 				Catatan Penilik :
 				<blockquote class="blockquote">
 					<p class="d-inline">{{artikel.catatan_penilik}}</p>
+				</blockquote>
+			</div>
+		{% endif %}
+
+		{% if artikel.catatan_penulis is defined %}
+			<div class="layout-spacing">
+				Catatan Penulis :
+				<blockquote class="blockquote">
+					<p class="d-inline">{{artikel.catatan_penulis}}</p>
 				</blockquote>
 			</div>
 		{% endif %}
