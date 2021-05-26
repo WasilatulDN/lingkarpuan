@@ -2,9 +2,19 @@
 
 {% block title %}Buat Jadwal{% endblock %}
 
+{% block custom_header %}
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+    <!--  END CUSTOM STYLE FILE  -->
+{% endblock %}
+
 {% block content_title %}Buat Jadwal{% endblock %}
 
 {% block content %}
+{% include 'layouts/alert.volt' %}
 <form method="POST" action="{{ url('jadwal/buat') }}">
     <div class="form-group">
         <label for="hari">Hari</label>

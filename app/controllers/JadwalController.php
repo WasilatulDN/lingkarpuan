@@ -24,8 +24,9 @@ class JadwalController extends JadwalProtectController
         $jam_selesai = $this->request->getPost('jam_selesai');
 
         if ($jam_mulai > $jam_selesai) {
-            // throw error
-            return $this->response->redirect('/');
+            $this->flashSession->error('cek kembali jam anda.');
+            $this->back();
+            return;
         }
 
         $jadwal->id_jadwal = $id_jadwal;
@@ -35,11 +36,13 @@ class JadwalController extends JadwalProtectController
         $jadwal->jam_selesai = $jam_selesai;
 
         if ($this->cekJadwal($jadwal)) {
-            // throw error
-            return $this->response->redirect('/');
+            $this->flashSession->error('anda memiliki jadwal lain di jam yang sama.');
+            $this->back();
+            return;
         }
         $jadwal->save();
-        return $this->response->redirect('/');
+        $this->flashSession->success('jadwal berhasil ditambahkan.');
+        return $this->response->redirect('jadwal/jadwalsaya');
 
 	}
 
@@ -138,6 +141,7 @@ class JadwalController extends JadwalProtectController
 	{
         $jadwal = Jadwal::findFirst("id_jadwal='$id'");
 		$jadwal->delete();
+        $this->flashSession->success('Jadwal berhasil dihapus.');
 		return $this->back();
 	}
 
