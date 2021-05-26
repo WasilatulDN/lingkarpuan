@@ -53,5 +53,12 @@ class KonsultasiRoutes extends RouterGroup
                 'action' => 'daftarhukum',
             ]
         );
+
+        $this->addGet(
+            '/jadwal/{id}',
+            [
+                'action' => 'listjadwal',
+            ]
+        );
     }
 }

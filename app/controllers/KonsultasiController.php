@@ -306,5 +306,56 @@ class KonsultasiController extends KonsultasiProtectController
 
     }
 
+    private function cekhari($harikonsultasi)
+    {
+        switch ($harikonsultasi) {
+            case 'Monday':
+                return 'Senin';
+                break;
+
+            case 'Tuesday':
+                return 'Selasa';
+                break;
+
+            case 'Wednesday':
+                return 'Rabu';
+                break;
+
+            case 'Thursday':
+                return 'Kamis';
+                break;
+
+            case 'Friday':
+                return 'Jumat';
+                break;
+
+            case 'Satudray':
+                return 'Sabtu';
+                break;
+
+            case 'Sunday':
+                return 'Minggu';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
+    public function listjadwalAction($id){
+        $jadwals = Jadwal::find("id_user='$id'");
+        $jadwals_json = [];
+        foreach ($jadwals as $jadwal) {
+            $jadwals_json[] = [
+                'hari' => $this->cekhari($jadwal->hari),
+                'jam_mulai' => $jadwal->jam_mulai,
+                'jam_selesai' => $jadwal->jam_selesai,
+            ];
+        }
+        $this->response->setJsonContent($jadwals_json);
+        return $this->response->send();
+    }
+
 
 }

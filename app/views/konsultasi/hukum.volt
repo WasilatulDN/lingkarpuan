@@ -24,6 +24,24 @@
     </blockquote>
 </div>
 <form method="POST" action="{{ url('konsultasi/hukum') }}">
+
+    <div class="form-group">
+        <label for="hukum">Rekan Hukum</label>
+        <select class="custom-select" id="hukum" name="hukum">
+            <option value="" disabled selected> Silahkan Pilih Rekan Hukum </option>
+            {% for hukum in hukums %}
+                <option value={{ hukum.id_user }}>{{ hukum.nama }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="jadwal">Jadwal</label>
+        <div id="jadwal">
+            <ul id="jadwal_list">
+                <li>Silahkan Pilih Rekan Hukum</li>
+            </ul>
+        </div>
+    </div>
     <div class="form-group">
         <label for="tanggal">Tanggal</label>
         <input type="date" class="form-control" id="tanggal" name="tanggal" required>
@@ -49,14 +67,28 @@
             <option value="40">40 Menit</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="hukum">Rekan Hukum</label>
-        <select class="custom-select" id="hukum" name="hukum">
-            {% for hukum in hukums %}
-                <option value={{ hukum.id_user }}>{{ hukum.nama }}</option>
-            {% endfor %}
-        </select>
-    </div>
     <button type="submit" class="btn btn-primary">Ajukan</button>
 </form>
+{% endblock %}
+
+{% block custom_script %}
+
+<script>
+    $('#hukum').change(function (e) {
+        id = e.target.value;
+        $.get(`{{url('konsultasi/jadwal/')}}/${id}`, function (data) {
+            document.getElementById('jadwal_list').innerHTML = '';
+            var innerHTML = ''
+            if(data.length == 0) {
+                innerHTML = `<li>Rekan Hukum tidak memiliki jadwal</li>`;
+            } else {
+                data.forEach(element => {
+                    innerHTML += `<li>${element.hari} - ${element.jam_mulai} - ${element.jam_selesai}</li>`
+                });
+            }
+                document.getElementById('jadwal_list').innerHTML = innerHTML;
+        })
+    })
+</script>
+
 {% endblock %}
