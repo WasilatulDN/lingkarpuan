@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/dt-global_style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/custom_dt_custom.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
     <!-- END PAGE LEVEL CUSTOM STYLES -->
 {% endblock %}
 
@@ -20,6 +24,7 @@
 {% endblock %}
 
 {% block content %}
+{% include 'layouts/alert.volt' %}
 <div class="col-lg-12">
     <div class="statbox widget box box-shadow" style="margin-bottom: 50 px">
         <div class="widget-content widget-content-area">

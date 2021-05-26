@@ -3,7 +3,6 @@
 // use Phalcon\Mvc\Controller;
 // use Phalcon\Http\Response;
 use App\Events\PengajuanProtectController;
-use Phalcon\Security\Random;
 
 class PengajuanController extends PengajuanProtectController
 {
@@ -58,7 +57,8 @@ class PengajuanController extends PengajuanProtectController
 		$layanan = PermintaanLayanan::findFirst("id_layanan='$id'");
 		$layanan->id_status_layanan = 3;
 		$layanan->save();
-		$this->response->redirect('pengajuan/daftar');
+        $this->flashSession->warning('Konsultasi ditolak.');
+		$this->back();
 	}
 
 	public function terimaAction($id)
@@ -92,14 +92,15 @@ class PengajuanController extends PengajuanProtectController
 
         if($layananCheck)
         {
-        	// error
-        	$this->response->redirect('pengajuan/daftar');
+        	$this->flashSession->error('Kamu memiliki konsultasi lain di jam tersebut.');
+            $this->back();
         }
         else
         {
         	$layanan->id_status_layanan = 2;
         	$layanan->save();
-        	$this->response->redirect('pengajuan/daftar');
+            $this->flashSession->success('Konsultasi berhasil diterima.');
+        	$this->back();
         }
 
         
