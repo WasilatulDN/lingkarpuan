@@ -52,8 +52,9 @@ class KonsultasiController extends KonsultasiProtectController
         $jam_selesai = date('H:i', strtotime('+' . $durasi . 'minutes', strtotime($jam_mulai)));
         $jenis_layanan = $layanan::PSIKOLOGI;
         if ($jam_mulai > $jam_selesai) {
-            // throw error
-            return $this->response->redirect('/');
+            $this->flashSession->error('cek kembali jam pengajuan konsultasimu.');
+            $this->back();
+            return;
         }
 
         $layanan->id_layanan = $id_layanan;
@@ -65,13 +66,24 @@ class KonsultasiController extends KonsultasiProtectController
         $layanan->durasi = $durasi;
         $layanan->jam_selesai = $jam_selesai;
         $layanan->jenis_layanan = $jenis_layanan;
-        if ($this->cekTanggalLayanan($layanan) and $this->cekJadwal($layanan)) {
-            $layanan->save();
-            return $this->response->redirect('/');
+        if ($this->cekTanggalLayanan($layanan)) {
+            if($this->cekJadwal($layanan))
+            {
+                $layanan->save();
+                $this->flashSession->success('Berhasil mengajukan konsultasi psikologi.');
+                return $this->response->redirect('konsultasi/psikologi/daftar');
+            }
+            else
+            {
+                $this->flashSession->error('Jam pengajuan tidak sesuai dengan jadwal rekan cerita yang dipilih.');
+                $this->back();
+            }
+            
         }
         else
         {
-            return $this->response->redirect('/');
+            $this->flashSession->error('Kamu memiliki konsultasi lain di jam tersebut.');
+            $this->back();
         }
     }
 
@@ -102,8 +114,9 @@ class KonsultasiController extends KonsultasiProtectController
         $jam_selesai = date('H:i', strtotime('+' . $durasi . 'minutes', strtotime($jam_mulai)));
         $jenis_layanan = $layanan::HUKUM;
         if ($jam_mulai > $jam_selesai) {
-            // throw error
-            return $this->response->redirect('/');
+            $this->flashSession->error('cek kembali jam pengajuan konsultasimu.');
+            $this->back();
+            return;
         }
 
         $layanan->id_layanan = $id_layanan;
@@ -115,13 +128,24 @@ class KonsultasiController extends KonsultasiProtectController
         $layanan->durasi = $durasi;
         $layanan->jam_selesai = $jam_selesai;
         $layanan->jenis_layanan = $jenis_layanan;
-        if ($this->cekTanggalLayanan($layanan) and $this->cekJadwal($layanan)) {
-            $layanan->save();
-            return $this->response->redirect('/');
+        if ($this->cekTanggalLayanan($layanan)) {
+            if($this->cekJadwal($layanan))
+            {
+                $layanan->save();
+                $this->flashSession->success('Berhasil mengajukan konsultasi hukum.');
+                return $this->response->redirect('konsultasi/hukum/daftar');
+            }
+            else
+            {
+                $this->flashSession->error('Jam pengajuan tidak sesuai dengan jadwal rekan hukum yang dipilih.');
+                $this->back();
+            }
+            
         }
         else
         {
-            return $this->response->redirect('/');
+            $this->flashSession->error('Kamu memiliki konsultasi lain di jam tersebut.');
+            $this->back();
         }
     }
 

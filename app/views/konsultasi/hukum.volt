@@ -2,9 +2,27 @@
 
 {% block title %}Ajukan Konsultasi Hukum{% endblock %}
 
+{% block custom_header %}
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+    <!--  END CUSTOM STYLE FILE  -->
+{% endblock %}
+
 {% block content_title %}Ajukan Konsultasi Hukum{% endblock %}
 
 {% block content %}
+{% include 'layouts/alert.volt' %}
+<div>
+    <blockquote class="blockquote">
+        <p class="d-inline">Konsultasi hukum adalah sesi dimana kamu dapat berkomunikasi dengan
+        rekan hukum pilihan lingkar puan. Rekan hukum adalah orang-orang dengan latar belakang
+        ilmu hukum yang dapat membantumu mengetahui tentang kasus apa saja yang dapat dibawa
+        ke ranah hukum serta tata cara pelaporannya.</p>
+    </blockquote>
+</div>
 <form method="POST" action="{{ url('konsultasi/hukum') }}">
     <div class="form-group">
         <label for="tanggal">Tanggal</label>
@@ -29,7 +47,6 @@
         <select class="custom-select" id="durasi" name="durasi">
             <option value="20">20 Menit</option>
             <option value="40">40 Menit</option>
-            <option value="60">60 Menit</option>
         </select>
     </div>
     <div class="form-group">
