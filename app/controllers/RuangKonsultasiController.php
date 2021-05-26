@@ -9,32 +9,44 @@ class RuangKonsultasiController extends RuangKonsultasiProtectController
     public function chatAction($id)
     {
         $userData = $this->session->get('user');
+        
+        $cek_konsultasi = PermintaanLayanan::findFirst("id_layanan = '$id'");
+        if($cek_konsultasi->id_status_layanan != PermintaanLayanan::DITERIMA)
+        {
+            $this->flashSession->warning('Konsultasi belum diterima.');
+            $this->back();
+            return;
+        }
+
         // Check apakah ada jadwal yang sedang berjalan
         $query_1 = 'id_layanan = :id:';
         $query_2 = 'id_user = :id_user: OR id_konsultan = :id_konsultan:';
-        // $query_3 = 'TIME(:jam:) between TIME(jam_mulai) AND TIME(jam_selesai)';
-        // $query_4 = ':tanggal: = tanggal';
+        $query_3 = 'TIME(:jam:) between TIME(jam_mulai) AND TIME(jam_selesai)';
+        $query_4 = ':tanggal: = tanggal';
 
         $parameter = [
             'id' => $id,
             'id_user' => $userData['id'],
             'id_konsultan' => $userData['id'],
-            // 'jam' => date('HH:mm'),
-            // 'tanggal' => date('Y-m-d'),
+            'jam' => date('H:m'),
+            'tanggal' => date('Y-m-d'),
         ];
         
         $konsultasi = PermintaanLayanan::findFirst(
             // "id_layanan='0837201c-ea2c-4d53-b223-b63b498f6b4b'"
             [
-                // 'conditions' => $query_1.' AND ('.$query_2.') AND '. $query_3.' AND '.$query_4,
-                'conditions' => $query_1.' AND ('.$query_2.')',
+                'conditions' => $query_1.' AND ('.$query_2.') AND '. $query_3.' AND '.$query_4,
+                // 'conditions' => $query_1.' AND ('.$query_2.')',
                 'bind' => $parameter
             ]
         );
 
         if (!$konsultasi) {
-            # code...
+            $this->flashSession->error('Konsultasi belum dimulai atau sudah berakhir');
+            $this->back();
+            return;
         }
+
         $kodeRuangan = md5($konsultasi->id_konsultan . $konsultasi->id_user);
         if ($userData['role'] == 1) {
             // $this->view->lawan_id = 'f13a0532-21fe-41e6-9273-8b16891caa59';
