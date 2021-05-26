@@ -100,6 +100,7 @@ class VerifikasiController extends VerifikasiProtectController
     $artikel->gambar = $nama_file;
     $artikel->updated_at = $date;
     $artikel->save();
+    $this->flashSession->success('Artikel berhasil dipublikasikan');
     $this->response->redirect('verifikasi/');
   }
 
@@ -111,6 +112,7 @@ class VerifikasiController extends VerifikasiProtectController
     $artikel->id_status_artikel = 5;
     $artikel->updated_at = $date;
     $artikel->save();
+    $this->flashSession->warning('Artikel ditolak');
     $this->response->redirect('verifikasi/');
 
   }
@@ -126,6 +128,7 @@ class VerifikasiController extends VerifikasiProtectController
       }
     }
 		$artikel->delete();
+    $this->flashSession->warning('Artikel berhasil dihapus');
 		$this->response->redirect('artikel/');
 	}
 
@@ -140,6 +143,7 @@ class VerifikasiController extends VerifikasiProtectController
     $artikel->catatan_penilik = $catatan_penilik;
     $artikel->updated_at = $date;
     $artikel->save();
+    $this->flashSession->success('Catatan revisi berhasil ditambahkan. Tunggu penulis memberikan tanggapan.');
     $this->response->redirect('verifikasi/');
   }
 

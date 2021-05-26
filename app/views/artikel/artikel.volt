@@ -1,10 +1,18 @@
 {% extends "layouts/base.volt" %}
 
+{% block custom_header %}
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+{% endblock %}
+
 {% block title %}Artikel{% endblock %}
 
 {% block content_title %}Artikel{% endblock %}
 
 {% block content %}
+{% include 'layouts/alert.volt' %}
 <div class="row">
 	{% for artikel in artikels %}
 		<div class="col-6 layout-spacing">

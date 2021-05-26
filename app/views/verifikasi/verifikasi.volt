@@ -6,8 +6,11 @@
 	<link href="{{url('assets/css/forms/theme-checkbox-radio.css')}}" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/datatables.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/dt-global_style.css')}}">
-	<link
-	rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/custom_dt_custom.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('plugins/table/datatable/custom_dt_custom.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
 <!-- END PAGE LEVEL STYLES -->
 {% endblock %}
 {% block title %}Verifikasi Artikel{% endblock %}
@@ -15,6 +18,7 @@
 {% block content_title %}Verifikasi Artikel{% endblock %}
 
 {% block content %}
+	{% include 'layouts/alert.volt' %}
 	<div class="row app-notes layout-top-spacing" id="cancel-row">
 		<div class="col-lg-12">
 			<div class="app-hamburger-container">
