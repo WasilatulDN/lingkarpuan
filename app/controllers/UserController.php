@@ -50,7 +50,7 @@ class UserController extends UserProtectController
         // $this->sendlink($kode_verifikasi, $email, $nama);
         // var_dump($user);
         $user->save();
-        $this->flashSession->warning("Akun berhasil dibuat. Silakan cek email anda untuk melakukan verifikasi.");
+        $this->flashSession->warning("Akun berhasil dibuat. Silakan cek emailmu untuk melakukan verifikasi.");
         $this->response->redirect('user/login');
     }
 
@@ -121,7 +121,7 @@ class UserController extends UserProtectController
                     );
                     $this->response->redirect();
                 } else {
-                    $this->flashSession->error("Akun belum diverifikasi. Silakan cek email anda.");
+                    $this->flashSession->error("Akun belum diverifikasi. Silakan cek emailmu untuk melakukan verifikasi.");
                     $this->back();
                 }
             } else {

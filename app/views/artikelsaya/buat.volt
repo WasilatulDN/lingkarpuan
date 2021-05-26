@@ -1,13 +1,6 @@
 {% extends "layouts/base.volt" %}
 
 {% block custom_header %}
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
-    <style>
-        .btn-light { border-color: transparent; }
-    </style>
-    <!--  END CUSTOM STYLE FILE  -->
-    
 	<script src="https://cdn.tiny.cloud/1/a9f7xblsuyi8v09v1a8lmet0us0guiplrzldj2xd6j1aff9l/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 	<script>
@@ -23,7 +16,6 @@
 {% block content_title %}Buat Artikel{% endblock %}
 
 {% block content %}
-{% include 'layouts/alert.volt' %}
 <div>
     <blockquote class="blockquote">
         <p class="d-inline">Kirimkan artikel anda agar dapat dibaca oleh seluruh pengguna Lingkar Puan.

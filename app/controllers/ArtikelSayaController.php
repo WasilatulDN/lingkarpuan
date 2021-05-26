@@ -42,6 +42,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $artikel->id_status_artikel = 3;
     $artikel->updated_at = $date;
     $artikel->save();
+    $this->flashSession->success('Artikel berhasil dikonfirmasi. Silakan tunggu artikelmu dipublikasikan oleh tim penilik. Kamu bisa melihat status artikelmu pada halaman Artikel Saya');
     $this->response->redirect('artikelsaya/');
   }
 
@@ -56,6 +57,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $artikel->catatan_penulis = $catatan_penulis;
     $artikel->updated_at - $date;
     $artikel->save();
+    $this->flashSession->success('Catatanmu untuk tim penilik berhasil dibuat. Silakan tunggu artikelmu dipublikasikan oleh tim penilik. Kamu bisa melihat status artikelmu pada halaman Artikel Saya');
     $this->response->redirect('artikelsaya/');
   }
 
@@ -84,8 +86,8 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $artikel->isi_artikel = $isi;
     $artikel->updated_at = $date;
     $artikel->save();
-    $this->flashSession->success('Artikel berhasil dibuat');
-    $this->back();
+    $this->flashSession->success('Artikel berhasil dibuat. Silakan tunggu hasil verifikasi dari tim penilik. Kamu bisa melihat status artikelmu pada halaman Artikel Saya');
+    $this->response->redirect('artikelsaya/');
 		
 	}
 
