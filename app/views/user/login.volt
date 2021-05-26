@@ -16,6 +16,13 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/forms/switches.css')}}">
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+    <!--  END CUSTOM STYLE FILE  -->
 </head>
 <body class="form">
     
@@ -33,7 +40,7 @@
 
                         <h1 class="">Masuk</h1>
                         <p class="">Masuk menggunakan akunmu untuk melanjutkan.</p>
-                        
+                        {% include 'layouts/alert.volt' %}
                         <form class="text-left" action="{{ url("user/login") }}" method="post">
                             <div class="form">
 

@@ -8,7 +8,6 @@ use Phalcon\Mvc\Url as MvcUrl;
 use Phalcon\Mvc\View\Engine\Volt as EngineVolt;
 use Phalcon\Events\Event as Event;
 use Phalcon\Events\Manager as EventsManager;
-use Phalcon\Flash\Session as FlashSession;
 /*
  * Fungsi pemanggilan Volt service
  */
@@ -102,25 +101,6 @@ $di->set(
         return $security;
     },
     true
-);
-
-/*
- * Fungsi flash messages service
- */
-$di->set(
-    'flashSession',
-    function () {
-        $flashSession = new FlashSession(
-            [
-                'error'   => 'alert alert-danger',
-                'success' => 'alert alert-success',
-                'notice'  => 'alert alert-info',
-                'warning' => 'alert alert-warning',
-            ]
-        );
-
-        return $flashSession;
-    }
 );
 
 /*

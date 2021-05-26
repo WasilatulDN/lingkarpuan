@@ -1,8 +1,5 @@
 <?php
 
-// use Phalcon\Mvc\Controller;
-use Phalcon\Http\Response;
-// use Phalcon\Mvc\Dispatcher;
 use App\Validation\UserValidation;
 use App\Events\UserProtectController;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -53,6 +50,7 @@ class UserController extends UserProtectController
         // $this->sendlink($kode_verifikasi, $email, $nama);
         // var_dump($user);
         $user->save();
+        $this->flashSession->warning("Akun berhasil dibuat. Silakan cek email anda untuk melakukan verifikasi.");
         $this->response->redirect('user/login');
     }
 
@@ -121,15 +119,18 @@ class UserController extends UserProtectController
                             'nama_role' => $role->nama_role,
                         ]
                     );
-                    (new Response())->redirect()->send();
+                    $this->response->redirect();
                 } else {
-                    $this->response->redirect('user/login');
+                    $this->flashSession->error("Akun belum diverifikasi. Silakan cek email anda.");
+                    $this->back();
                 }
             } else {
-                $this->response->redirect('user/login');
+                $this->flashSession->error("Kata sandi tidak sesuai.");
+                $this->back();
             }
         } else {
-            $this->response->redirect('user/login');
+            $this->flashSession->error("Email tidak terdaftar.");
+            $this->back();
         }
     }
 
@@ -157,7 +158,8 @@ class UserController extends UserProtectController
         if ($user) {
             $user->status_verifikasi = 1;
             $user->save();
-            $this->response->redirect('');
+            $this->flashSession->success("Email berhasil diverifikasi.");
+            $this->response->redirect('user/login');
         } else {
             $this->response->redirect('user/gagalverifikasi');
         }
