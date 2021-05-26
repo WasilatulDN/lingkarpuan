@@ -84,7 +84,8 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $artikel->isi_artikel = $isi;
     $artikel->updated_at = $date;
     $artikel->save();
-    $this->response->redirect();
+    $this->flashSession->success('Artikel berhasil dibuat');
+    $this->back();
 		
 	}
 
