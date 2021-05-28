@@ -7,7 +7,7 @@ class RuangKonsultasiRoutes extends RouterGroup
     public function initialize()
     {
         $this->setPaths([
-            'controller' => 'ruangKonsultasi',
+            'controller' => 'ruangkonsultasi',
         ]);
 
         $this->setPrefix('/ruang_konsultasi');

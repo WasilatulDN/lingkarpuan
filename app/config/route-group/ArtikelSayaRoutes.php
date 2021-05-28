@@ -7,7 +7,7 @@ class ArtikelSayaRoutes extends RouterGroup
     public function initialize()
     {
         $this->setPaths([
-            'controller' => 'artikelSaya',
+            'controller' => 'artikelsaya',
         ]);
 
         $this->setPrefix('/artikelsaya');
