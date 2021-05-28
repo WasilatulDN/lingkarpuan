@@ -76,7 +76,7 @@
 			<hr style="height: 1px; border: none; background-color: #7B7B7B">
 		{% endfor %}
 	</div>
-	{% if (session.get('user')['role'] != 4) %}
+	{% if (session.get('user')['role'] != 4 AND session.get('user')['role'] is defined) %}
 		<div id="komentar_area" class="container layout-spacing">
 			<form action="{{ url("artikel/komentar") }}" method="post">
 				<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
