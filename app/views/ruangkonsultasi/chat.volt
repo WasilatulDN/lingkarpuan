@@ -75,7 +75,7 @@
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square">
 											<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
 										</svg>
-										<input type="text" class="mail-write-box form-control" id='input' placeholder="Message">
+										<input type="text" class="mail-write-box form-control" autocomplete="off" id='input' placeholder="Message">
 									</form>
 								</div>
 							</div>
@@ -91,7 +91,7 @@
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script>
     let ID = "";
-    var socket = io('http://localhost:3000/', { transports : ['websocket'] });
+    var socket = io('https://chat.lingkarpuan.com');
     const userName = "{{user['nama']}}";
     const room = "{{kode}}";
     const id = "{{user['id']}}";
@@ -104,8 +104,10 @@
     socket.emit("join room", {username : userName, roomName : room});
     
     const myPeer = new Peer(id, {
-      host: '/',
-      port: '3001'
+      host: 'chat.lingkarpuan.com',
+      port: '443',
+      secure: true,
+      path: '/video'
     })
 
     form.addEventListener('submit', function(e) {
