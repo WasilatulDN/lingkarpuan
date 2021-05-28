@@ -4,7 +4,7 @@
 // use Phalcon\Http\Response;
 use App\Events\RuangKonsultasiProtectController;
 
-class RuangKonsultasiController extends RuangKonsultasiProtectController
+class RuangkonsultasiController extends RuangKonsultasiProtectController
 {
     public function chatAction($id)
     {
@@ -28,14 +28,14 @@ class RuangKonsultasiController extends RuangKonsultasiProtectController
             'id' => $id,
             'id_user' => $userData['id'],
             'id_konsultan' => $userData['id'],
-            'jam' => date('H:m'),
+            'jam' => date('H:i'),
             'tanggal' => date('Y-m-d'),
         ];
         
         $konsultasi = PermintaanLayanan::findFirst(
             // "id_layanan='0837201c-ea2c-4d53-b223-b63b498f6b4b'"
             [
-                'conditions' => $query_1.' AND ('.$query_2.') AND '. $query_3.' AND '.$query_4,
+                'conditions' => $query_1.' AND ('.$query_2.') AND ('. $query_3.') AND '.$query_4,
                 // 'conditions' => $query_1.' AND ('.$query_2.')',
                 'bind' => $parameter
             ]

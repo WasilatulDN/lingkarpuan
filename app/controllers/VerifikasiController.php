@@ -48,8 +48,8 @@ class VerifikasiController extends VerifikasiProtectController
 
   public function detailAction($id)
   {
-    $artikel = artikel::findFirst("id_artikel='$id'");
-		$penulis = user::findFirst("id_user='$artikel->id_user'");
+    $artikel = Artikel::findFirst("id_artikel='$id'");
+		$penulis = User::findFirst("id_user='$artikel->id_user'");
     $status = StatusArtikel::findFirst("id_status_artikel='$artikel->id_status_artikel'");
     $this->view->artikel = $artikel;
     $this->view->penulis = $penulis;
@@ -58,7 +58,7 @@ class VerifikasiController extends VerifikasiProtectController
 
   public function terimaAction($id)
   {
-    $artikel = artikel::findFirst("id_artikel='$id'");
+    $artikel = Artikel::findFirst("id_artikel='$id'");
     $status = StatusArtikel::findFirst("id_status_artikel='$artikel->id_status_artikel'");
     $this->view->artikel = $artikel;
     $this->view->status = $status;
@@ -93,7 +93,7 @@ class VerifikasiController extends VerifikasiProtectController
       }
     }
 
-    $artikel = artikel::findFirst("id_artikel='$id_artikel'");
+    $artikel = Artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->judul = $judul;
     $artikel->isi_artikel = $isi_artikel;
     $artikel->id_status_artikel = 4;
@@ -106,7 +106,7 @@ class VerifikasiController extends VerifikasiProtectController
 
   public function tolakAction($id)
   {
-    $artikel = artikel::findFirst("id_artikel='$id'");
+    $artikel = Artikel::findFirst("id_artikel='$id'");
     $date = date('Y/m/d H:i:s', time());
 
     $artikel->id_status_artikel = 5;
@@ -119,7 +119,7 @@ class VerifikasiController extends VerifikasiProtectController
 
 	public function hapusAction($id)
 	{
-		$artikel = artikel::findFirst("id_artikel='$id'");
+		$artikel = Artikel::findFirst("id_artikel='$id'");
     $komentars = Komentar::find("id_artikel='$id'");
     if($komentars)
     {
@@ -138,7 +138,7 @@ class VerifikasiController extends VerifikasiProtectController
     $catatan_penilik = $this->request->getPost('catatan_penilik');
     $date = date('Y/m/d H:i:s', time());
 
-    $artikel = artikel::findFirst("id_artikel='$id_artikel'");
+    $artikel = Artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 2;
     $artikel->catatan_penilik = $catatan_penilik;
     $artikel->updated_at = $date;

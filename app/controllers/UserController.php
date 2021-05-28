@@ -47,7 +47,7 @@ class UserController extends UserProtectController
         $user->kode_verifikasi = $kode_verifikasi;
 
         //kirim email verifikasi
-        // $this->sendlink($kode_verifikasi, $email, $nama);
+        $this->sendlink($kode_verifikasi, $email, $nama);
         // var_dump($user);
         $user->save();
         $this->flashSession->warning("Akun berhasil dibuat. Silakan cek emailmu untuk melakukan verifikasi.");
@@ -57,21 +57,14 @@ class UserController extends UserProtectController
     private function sendlink($kode, $email, $nama)
     {
         $message = file_get_contents(APP_PATH . '/templates/emailverifikasi.html');
-        $link = "http://localhost/lingkarpuan/user/verifikasi?email=" . $email . "&verifikasi=" . $kode;
+        $link = "http://lingkarpuan.com/user/verifikasi?email=" . $email . "&verifikasi=" . $kode;
         // echo $link; die();
         $message = str_replace('%link%', $link, $message);
 
         $mail = new PHPMailer(true);
         try {
             //Server settings
-            $mail->SMTPDebug = 2;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.mailtrap.io';
-            $mail->SMTPAuth = true;
-            $mail->Username = '7a1fd2f7381fc9';
-            $mail->Password = 'fc941de8104ce3';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 2525;
+            $mail->isSendmail();
 
             //Recipients
             $mail->setFrom('email@lingkarpuan.com', 'Lingkar Puan');

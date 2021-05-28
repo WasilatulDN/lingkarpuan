@@ -8,12 +8,12 @@ class ArtikelController extends Controller
 {
     public function artikelAction()
     {
-        $artikels = artikel::find("id_status_artikel='4' ORDER BY updated_at DESC");
+        $artikels = Artikel::find("id_status_artikel='4' ORDER BY updated_at DESC");
 
         $data_artikel = array();
 
         foreach ($artikels as $artikel) {
-            $penulis_artikel = user::findFirst("id_user='$artikel->id_user'");
+            $penulis_artikel = User::findFirst("id_user='$artikel->id_user'");
             $data_artikel[] = array(
                 'id_artikel' => $artikel->id_artikel,
                 'judul' => $artikel->judul,
@@ -28,16 +28,16 @@ class ArtikelController extends Controller
 
     public function detailAction($id)
     {
-        $artikel = artikel::findFirst("id_artikel='$id'");
-        $penulis = user::findFirst("id_user='$artikel->id_user'");
-        $komentars = komentar::find("id_artikel='$id' ORDER BY created_at ASC");
+        $artikel = Artikel::findFirst("id_artikel='$id'");
+        $penulis = User::findFirst("id_user='$artikel->id_user'");
+        $komentars = Komentar::find("id_artikel='$id' ORDER BY created_at ASC");
 
         // echo $penulis->nama; die();
 
         $data_komentar = array();
 
         foreach ($komentars as $komentar) {
-            $penulis_komentar = user::findFirst("id_user='$komentar->id_user'");
+            $penulis_komentar = User::findFirst("id_user='$komentar->id_user'");
             $data_komentar[] = array(
                 'id_komentar' => $komentar->id_komentar,
                 'id_user' => $komentar->id_user,
@@ -76,7 +76,7 @@ class ArtikelController extends Controller
 
     public function hapuskomentarAction($id)
     {
-        $komentar = komentar::findFirst("id_komentar='$id'");
+        $komentar = Komentar::findFirst("id_komentar='$id'");
         $id_artikel = $komentar->id_artikel;
         $komentar->delete();
         $this->response->redirect('artikel/detail/' . $id_artikel);

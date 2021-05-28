@@ -15,7 +15,7 @@ class PengajuanController extends PengajuanProtectController
 		$data_layanan = array();
 
         foreach ($layanans as $layanan) {
-            $klien = user::findFirst("id_user='$layanan->id_user'");
+            $klien = User::findFirst("id_user='$layanan->id_user'");
             $data_layanan[] = array(
               'id_layanan' => $layanan->id_layanan,
               'klien' => $klien->nama,
@@ -38,7 +38,7 @@ class PengajuanController extends PengajuanProtectController
 		$data_layanan = array();
 
         foreach ($layanans as $layanan) {
-            $klien = user::findFirst("id_user='$layanan->id_user'");
+            $klien = User::findFirst("id_user='$layanan->id_user'");
             $data_layanan[] = array(
               'id_layanan' => $layanan->id_layanan,
               'klien' => $klien->nama,

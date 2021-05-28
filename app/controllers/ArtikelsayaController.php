@@ -5,7 +5,7 @@
 use App\Events\ArtikelSayaProtectController;
 use Phalcon\Security\Random;
 
-class ArtikelSayaController extends ArtikelSayaProtectController
+class ArtikelsayaController extends ArtikelSayaProtectController
 {
   public function artikelsayaAction()
   {
@@ -52,7 +52,7 @@ class ArtikelSayaController extends ArtikelSayaProtectController
     $catatan_penulis = $this->request->getPost('catatan_penulis');
     $date = date('Y/m/d H:i:s', time());
 
-    $artikel = artikel::findFirst("id_artikel='$id_artikel'");
+    $artikel = Artikel::findFirst("id_artikel='$id_artikel'");
     $artikel->id_status_artikel = 3;
     $artikel->catatan_penulis = $catatan_penulis;
     $artikel->updated_at - $date;

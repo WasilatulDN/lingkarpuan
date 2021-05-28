@@ -12,7 +12,7 @@ class KonsultasiController extends KonsultasiProtectController
 
 	public function hukumAction()
     {
-    	$hukums = user::find("id_role='3'");
+    	$hukums = User::find("id_role='3'");
 		$this->view->hukums = $hukums;
         $this->view->messages = $this->messages;
 
@@ -20,7 +20,7 @@ class KonsultasiController extends KonsultasiProtectController
 
     public function psikologiAction()
     {
-    	$psikologs = user::find("id_role='2'");
+    	$psikologs = User::find("id_role='2'");
 		$this->view->psikologs = $psikologs;
         $this->view->messages = $this->messages;
     }
@@ -251,7 +251,7 @@ class KonsultasiController extends KonsultasiProtectController
         $data_layanan = array();
 
         foreach ($layanans as $layanan) {
-            $psikolog = user::findFirst("id_user='$layanan->id_konsultan'");
+            $psikolog = User::findFirst("id_user='$layanan->id_konsultan'");
             $status = StatusLayanan::findFirst("id_status_layanan='$layanan->id_status_layanan'");
             $data_layanan[] = array(
               'id_layanan' => $layanan->id_layanan,
@@ -289,7 +289,7 @@ class KonsultasiController extends KonsultasiProtectController
         $data_layanan = array();
 
         foreach ($layanans as $layanan) {
-            $psikolog = user::findFirst("id_user='$layanan->id_konsultan'");
+            $psikolog =User::findFirst("id_user='$layanan->id_konsultan'");
             $status = StatusLayanan::findFirst("id_status_layanan='$layanan->id_status_layanan'");
             $data_layanan[] = array(
               'id_layanan' => $layanan->id_layanan,
