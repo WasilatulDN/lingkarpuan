@@ -7,11 +7,11 @@ return new Config([
     'database' => [
         'adapter' => 'Mysql',
         'host' => '127.0.0.1',
-        'username' => 'root',
-        'password' => '',
-        'dbname' => 'lingkar_puan'
+        'username' => 'u940638415_lingkarpuan',
+        'password' => 'L1ngk4rPu4n',
+        'dbname' => 'u940638415_lingkarpuan'
     ],
     'url' => [
-        'baseUrl' => 'http://localhost/lingkarpuan/'
+        'baseUrl' => 'https://lingkarpuan.com/'
     ]
 ]);
