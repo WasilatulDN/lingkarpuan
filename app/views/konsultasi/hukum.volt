@@ -27,8 +27,8 @@
 
     <div class="form-group">
         <label for="hukum">Rekan Hukum</label>
-        <select class="custom-select" id="hukum" name="hukum">
-            <option value="" disabled selected> Silahkan Pilih Rekan Hukum </option>
+        <select class="custom-select" id="hukum" name="hukum" required>
+            <option value="" disabled selected> Silakan Pilih Rekan Hukum </option>
             {% for hukum in hukums %}
                 <option value={{ hukum.id_user }}>{{ hukum.nama }}</option>
             {% endfor %}
@@ -38,7 +38,7 @@
         <label for="jadwal">Jadwal</label>
         <div id="jadwal">
             <ul id="jadwal_list">
-                <li>Silahkan Pilih Rekan Hukum</li>
+                <li>Silakan Pilih Rekan Hukum</li>
             </ul>
         </div>
     </div>
