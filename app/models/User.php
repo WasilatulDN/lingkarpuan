@@ -16,4 +16,5 @@ class User extends Model
     const REKAN_CERITA = 2;
     const REKAN_HUKUM = 3;
     const PENILIK = 4;
+    const ADMIN = 5;
 }

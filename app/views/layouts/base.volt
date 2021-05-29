@@ -21,6 +21,8 @@
         {% include 'layouts/navbar_konsultan.volt' %}
     {% elseif (session.get('user')['role'] == 4) %}
         {% include 'layouts/navbar_penilik.volt' %}
+    {% elseif (session.get('user')['role'] == 5) %}
+        {% include 'layouts/navbar_admin.volt' %}
     {% else %}
         {% include 'layouts/navbar_default.volt' %}
     {% endif %}

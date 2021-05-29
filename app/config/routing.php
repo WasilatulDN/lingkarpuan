@@ -30,6 +30,10 @@ $di->set(
         );
 
         $router->mount(
+            new ManajemenUserRoutes()
+        );
+
+        $router->mount(
             new JadwalRoutes()
         );
 
