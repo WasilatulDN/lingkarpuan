@@ -1,9 +1,9 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-// use Phalcon\Http\Response;
+use App\Events\ProfilProtectController;
+use App\Validation\PasswordValidation;
 
-class ProfilController extends Controller
+class ProfilController extends ProfilProtectController
 {
 	public function detailAction($id)
 	{
@@ -66,6 +66,39 @@ class ProfilController extends Controller
                 # code...
                 break;
         }
+    }
+
+    
+    public function ubahpasswordAction()
+    {
+        $this->view->messages = $this->messages;
+
+    }
+
+    public function postubahpasswordAction()
+    {
+        $val = new PasswordValidation();
+        $messages = $val->validate($_POST);
+
+        if (count($messages)) {
+            $this->messages = array();
+            foreach ($messages as $m) {
+                $this->messages[$m->getField()] = $m;
+            }
+            $this->dispatcher->forward(['action' => 'ubahpassword']);
+            return;
+        }
+
+        $id_user = $this->request->getPost('id_user');
+        $password_baru = $this->request->getPost('password_baru');
+
+        $user = User::findFirst("id_user='$id_user'");
+        $user->password = $this->security->hash($password_baru);
+        $user->save();
+        
+        $this->flashSession->success("Kata sandi berhasil diperbarui.");
+        $this->back();
+        
     }
 
 }
