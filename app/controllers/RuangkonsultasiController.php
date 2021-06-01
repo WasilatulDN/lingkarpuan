@@ -55,6 +55,11 @@ class RuangkonsultasiController extends RuangKonsultasiProtectController
             // $this->view->lawan_id = "e02ceaac-ba97-4e4a-94dc-b817c867f4e3";
             $this->view->lawan_id = $konsultasi->id_user;
         }
+
+        $puan = User::findFirst("id_user='$konsultasi->id_user'");
+        $konsultan = User::findFirst("id_user='$konsultasi->id_konsultan'");
+        $this->view->puan = $puan;
+        $this->view->konsultan = $konsultan;
         $this->view->user = $userData;
         $this->view->kode = $kodeRuangan;
         

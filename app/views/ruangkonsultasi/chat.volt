@@ -34,7 +34,12 @@
 			</div>
 
 			<div style="padding: 10px">
-				<p>video pembicara</p>
+        {% if (user['role'] == 1) %}
+          <p>video {{konsultan.nama}}</p>
+        {% else %}
+          <p>video {{puan.nama}}</p>
+        {% endif %}
+
 				<video id="other_video"></video>
 			</div>
 
@@ -50,7 +55,11 @@
 							<div class="chat-meta-user chat-active">
 								<div class="current-chat-user-name">
 									<span>
-										<span class="name">Pembicara</span>
+                  {% if (user['role'] == 1) %}
+										<span class="name">{{konsultan.nama}}</span>
+                  {% else %}
+                    <span class="name">{{puan.nama}}</span>
+                  {% endif %}
 									</span>
 								</div>
                 <div class="chat-action-btn align-self-center">
