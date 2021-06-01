@@ -32,6 +32,9 @@
                 <option value={{ psikolog.id_user }}>{{ psikolog.nama }}</option>
             {% endfor %}
         </select>
+        <div id="show_profile" style="float: right; margin-top: 10px">
+            
+        </div> 
     </div>
     <div class="form-group">
         <label for="jadwal">Jadwal</label>
@@ -87,6 +90,9 @@
             }
                 document.getElementById('jadwal_list').innerHTML = innerHTML;
         })
+
+        document.getElementById('show_profile').innerHTML = `<a href="{{url('profil/detail/${id}')}}" class="btn btn-primary btn-sm" target="_blank">Lihat Profil</a>`;
+
     })
 </script>
 
