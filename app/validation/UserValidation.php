@@ -15,7 +15,7 @@ class UserValidation extends Validation
         'password',
         new Regex(
             [
-                'pattern' => '/[^_\n\r\s]{8,}/',
+                'pattern' => '/[^_\s]{8,}/',
                 'message' => 'Kata sandi harus terdiri dari minimal 8 karakter',
             ]
         )

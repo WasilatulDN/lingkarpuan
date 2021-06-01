@@ -26,18 +26,21 @@
 <form method="POST" action="{{ url('konsultasi/psikologi') }}">
     <div class="form-group">
         <label for="psikolog">Psikolog</label>
-        <select class="custom-select" id="psikolog" name="psikolog">
-            <option value="" disabled selected> Silahkan Pilih Rekan Cerita </option>
+        <select class="custom-select" id="psikolog" name="psikolog" required>
+            <option value="" disabled selected> Silakan Pilih Rekan Cerita </option>
             {% for psikolog in psikologs %}
                 <option value={{ psikolog.id_user }}>{{ psikolog.nama }}</option>
             {% endfor %}
         </select>
+        <div id="show_profile" style="float: right; margin-top: 10px">
+            
+        </div> 
     </div>
     <div class="form-group">
         <label for="jadwal">Jadwal</label>
         <div id="jadwal">
             <ul id="jadwal_list">
-                <li>Silahkan Pilih Rekan Cerita</li>
+                <li>Silakan Pilih Rekan Cerita</li>
             </ul>
         </div>
     </div>
@@ -87,6 +90,9 @@
             }
                 document.getElementById('jadwal_list').innerHTML = innerHTML;
         })
+
+        document.getElementById('show_profile').innerHTML = `<a href="{{url('profil/detail/${id}')}}" class="btn btn-primary btn-sm" target="_blank">Lihat Profil</a>`;
+
     })
 </script>
 

@@ -18,5 +18,20 @@ class ProfilRoutes extends RouterGroup
                 'action' => 'detail',
             ]
         );
+
+        $this->addGet(
+            '/ubahpassword',
+            [
+                'action' => 'ubahpassword',
+            ]
+        );
+
+        $this->addPost(
+            '/ubahpassword',
+            [
+                'action' => 'postubahpassword',
+            ]
+        );
+        
     }
 }

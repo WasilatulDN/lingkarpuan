@@ -82,7 +82,7 @@
 				<input type="hidden" name="id_artikel" value="{{artikel.id_artikel}}">
 				<div class="form-group mb-4">
 					<label for="Komentar">Komentar Anda</label>
-					<textarea class="form-control" id="isi_komentar" name="isi_komentar" rows="3"></textarea>
+					<textarea class="form-control" id="isi_komentar" name="isi_komentar" rows="3" required></textarea>
 				</div>
 				<div class="form-group mb-4">
 					<button class="btn btn-primary" type='submit'>Kirim</button>
