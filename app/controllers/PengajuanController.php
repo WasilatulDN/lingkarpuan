@@ -69,6 +69,13 @@ class PengajuanController extends PengajuanProtectController
 		$jam_mulai = $layanan->jam_mulai;
 		$jam_selesai = $layanan->jam_selesai;
 
+        if(($tanggal < date("Y-m-d")) || ($tanggal == date("Y-m-d") && $jam_selesai < date("H:i")))
+        {
+            $this->flashSession->error('Konsultasi gagal diterima karena waktu sudah terlewat.');
+            $this->back();
+            return;
+        }
+
 		$query_1 = 'id_konsultan = :id_user:';
         $query_2 = 'tanggal = :tanggal:';
         $query_3 = 'id_status_layanan = 2';

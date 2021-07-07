@@ -1,8 +1,8 @@
 {% extends "layouts/base.volt" %}
 
-{% block title %}Buat Akun Baru{% endblock %}
+{% block title %}Tambahkan Pengguna Baru{% endblock %}
 
-{% block content_title %}Buat Akun Baru{% endblock %}
+{% block content_title %}Tambahkan Pengguna Baru{% endblock %}
 
 {% block content %}
 

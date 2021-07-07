@@ -25,7 +25,7 @@
 </div>
 <form method="POST" action="{{ url('konsultasi/psikologi') }}">
     <div class="form-group">
-        <label for="psikolog">Psikolog</label>
+        <label for="psikolog">Rekan Cerita</label>
         <select class="custom-select" id="psikolog" name="psikolog" required>
             <option value="" disabled selected> Silakan Pilih Rekan Cerita </option>
             {% for psikolog in psikologs %}
@@ -69,7 +69,7 @@
             <option value="40">40 Menit</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Ajukan</button>
 </form>
 {% endblock %}
 
