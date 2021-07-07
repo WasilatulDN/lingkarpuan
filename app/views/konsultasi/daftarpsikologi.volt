@@ -32,7 +32,7 @@
                         <th>Tanggal</th>
                         <th>Jam Mulai</th>
                         <th>Durasi</th>
-                        <th>Psikolog</th>
+                        <th>Rekan Cerita</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>

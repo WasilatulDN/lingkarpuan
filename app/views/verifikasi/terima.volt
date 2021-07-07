@@ -7,26 +7,6 @@
 {% block content_title %}Publikasikan Artikel{% endblock %}
 
 {% block content %}
-	<div id="artikel_area" class="container layout-spacing">
-		<div id="privacyWrapper" class="">
-			<div class="privacy-container">
-				<div class="privacyContent">
-					<div class="d-flex justify-content-between privacy-head">
-						<div class="privacyHeader">
-							<h1>{{artikel.judul}}</h1>
-							<!-- <p>Sep 15, 2020</p> -->
-						</div>
-					</div>
-
-					<div class="privacy-content-container">
-						<section>
-							{{artikel.isi_artikel}}
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div id="status_area" class="container layout-spacing">
 		<div>
 			Status :
