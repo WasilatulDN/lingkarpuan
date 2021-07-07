@@ -100,7 +100,7 @@
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script>
     let ID = "";
-    var socket = io('https://chat.lingkarpuan.com');
+    var socket = io('http://localhost:3000/', { transports : ['websocket'] });
     const userName = "{{user['nama']}}";
     const room = "{{kode}}";
     const id = "{{user['id']}}";
@@ -113,10 +113,8 @@
     socket.emit("join room", {username : userName, roomName : room});
     
     const myPeer = new Peer(id, {
-      host: 'chat.lingkarpuan.com',
-      port: '443',
-      secure: true,
-      path: '/video'
+      host: '/',
+      port: '3001'
     })
 
     form.addEventListener('submit', function(e) {
