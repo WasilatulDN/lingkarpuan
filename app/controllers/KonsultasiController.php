@@ -345,15 +345,49 @@ class KonsultasiController extends KonsultasiProtectController
 
     public function listjadwalAction($id){
         $jadwals = Jadwal::find("id_user='$id'");
-        $jadwals_json = [];
+        $jadwal_datas = [];
         foreach ($jadwals as $jadwal) {
-            $jadwals_json[] = [
+            $jadwal_datas[] = [
                 'hari' => $this->cekhari($jadwal->hari),
                 'jam_mulai' => $jadwal->jam_mulai,
                 'jam_selesai' => $jadwal->jam_selesai,
             ];
         }
-        $this->response->setJsonContent($jadwals_json);
+
+        // Check apakah ada jadwal yang sedang berjalan
+        $query_1 = 'id_konsultan = :id_konsultan:';
+        $query_2 = ':tanggal: < tanggal';
+
+        $parameter = [
+            'id_konsultan' => $id,
+            'tanggal' => date('Y-m-d'),
+        ];
+        
+        $konsultasis = PermintaanLayanan::find(
+            [
+                'conditions' => $query_1.' AND '.$query_2,
+                'bind' => $parameter
+            ]
+        );
+        
+        $konsultasi_datas = [];
+        foreach ($konsultasis as $key => $konsultasi) {
+            $jam_mulai = date("Y-m-d\TH:i:s",strtotime($konsultasi->tanggal." ".$konsultasi->jam_mulai));
+            $jam_selesai = date("Y-m-d\TH:i:s",strtotime($konsultasi->tanggal." ".$konsultasi->jam_selesai));
+            $konsultasi_datas[] = [
+                'id' => $key,
+                'content' => 'Sibuk',
+                'start' => $jam_mulai,
+                'end' => $jam_selesai,
+            ];
+        }
+
+        $data = [
+            'konsultasi_datas' => $konsultasi_datas,
+            'jadwal_datas' => $jadwal_datas,
+        ];
+
+        $this->response->setJsonContent($data);
         return $this->response->send();
     }
 

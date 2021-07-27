@@ -5,6 +5,7 @@
 {% block custom_header %}
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/elements/alert.css')}}">
+        <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
     <style>
         .btn-light { border-color: transparent; }
     </style>
@@ -44,6 +45,7 @@
                 <li>Silakan Pilih Rekan Hukum</li>
             </ul>
         </div>
+        <div id="visualization"></div>
     </div>
     <div class="form-group">
         <label for="tanggal">Tanggal</label>
@@ -76,20 +78,33 @@
 
 {% block custom_script %}
 
+<script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
 <script>
+
+    var container = document.getElementById('visualization');
+    var items = new vis.DataSet();
+    var options = {};
+    var timeline = new vis.Timeline(container, items, options);
+
     $('#hukum').change(function (e) {
         id = e.target.value;
         $.get(`{{url('konsultasi/jadwal/')}}/${id}`, function (data) {
             document.getElementById('jadwal_list').innerHTML = '';
             var innerHTML = ''
-            if(data.length == 0) {
-                innerHTML = `<li>Rekan Hukum tidak memiliki jadwal</li>`;
+            if(data.jadwal_datas.length == 0) {
+                innerHTML = `<li>Rekan Cerita tidak memiliki jadwal</li>`;
             } else {
-                data.forEach(element => {
+                data.jadwal_datas.forEach(element => {
                     innerHTML += `<li>${element.hari} - ${element.jam_mulai} - ${element.jam_selesai}</li>`
                 });
             }
-                document.getElementById('jadwal_list').innerHTML = innerHTML;
+            document.getElementById('jadwal_list').innerHTML = innerHTML;
+            timeline.itemsData.clear()
+            timeline.itemsData.add(data.konsultasi_datas)
+            timeline.redraw()
+            if (data.konsultasi_datas[0]) {
+                timeline.moveTo(data.konsultasi_datas[0].start)
+            }
         })
         
         document.getElementById('show_profile').innerHTML = `<a href="{{url('profil/detail/${id}')}}" class="btn btn-primary btn-sm" target="_blank">Lihat Profil</a>`;
