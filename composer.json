@@ -1,5 +1,9 @@
 {
     "require-dev": {
         "phalcon/ide-stubs": "^4.1"
+    },
+
+    "require": {
+        "php": "~7.3.0"
     }
 }
